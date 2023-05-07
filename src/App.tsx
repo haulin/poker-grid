@@ -20,13 +20,12 @@ export function App() {
   return (
     <>
       <header>
-        <button onClick={() => setMode('main')}>Home</button>
         <button onClick={() => state.update({ type: 'new-game' })}>
           New Game
         </button>
         <button
           hidden={['main', 'table'].includes(displayMode)}
-          onClick={() => setMode('table')}
+          onClick={() => setMode(mode === 'deck' ? 'main' : 'table')}
         >
           View board
         </button>
@@ -42,19 +41,21 @@ export function App() {
           <div className="sidebar" hidden={isGameOver}>
             <div style={{ marginRight: 'auto' }}>
               Next card
-              <Card card={state.deck[0]} />
+              <button
+                className="action-button card card--deck"
+                onClick={() => setMode('deck')}
+              >
+                <Card card={state.deck[0]} transparent />
+              </button>
             </div>
             <ActionUndo {...state} />
             <ActionDiscard {...state} />
-            {/* <button className="card card--deck" onClick={() => setMode('deck')}>
-              See deck
-            </button> */}
           </div>
           <Board {...state} />
         </div>
-        <div hidden={displayMode !== 'deck'}>
-          <Deck deck={state.deck} />
-        </div>
+      </div>
+      <div hidden={displayMode !== 'deck'}>
+        <Deck deck={state.deck} />
       </div>
       <div hidden={displayMode !== 'game-over'}>
         <GameSummary {...state} />

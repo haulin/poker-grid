@@ -20,8 +20,23 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 
+  --bg-extralight: #ffffff08;
+  --bg-light: #fff1;
+  --body-bg-1: #315;
+  --body-bg-2: #111;
+  --border-light: #fff3;
+  --border-medium-light: #fff5;
+  --border-medium: #fff7;
+  --border-heavy: #fffb;
+  --button-bg: #111;
+  --button-hover-border: #ff99;
+  --card-bg-1: #222;
+  --card-bg-2: #000;
+  --card-black-color: #777;
+  --card-red-color: #d02;
   --card-height: 7em;
   --card-width: 5em;
+  --text-highlighted: #ff9c;
 }
 /* total width: 33em */
 @media (min-width: calc(33 * 10px)) {
@@ -64,7 +79,7 @@
 }
 
 body {
-  background-image: linear-gradient(135deg, #315, #111);
+  background-image: linear-gradient(135deg, var(--body-bg-1), var(--body-bg-2));
   height: 100%;
   margin: 0;
   user-select: none;
@@ -73,41 +88,35 @@ body {
 
 button {
   border-radius: 8px;
-  border: 1px solid transparent;
+  border: 1px solid var(--border-light);
   padding: 0.6em 1.2em;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #111;
+  background-color: var(--button-bg);
   cursor: pointer;
   transition: border-color 0.25s;
 }
 button:not(:disabled):hover {
-  border-color: #ffcc;
+  border-color: var(--button-hover-border);
 }
 button:focus,
 button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  outline: 4px auto var(--button-hover-border);
 }
 button:disabled {
   cursor: unset;
   opacity: 0.3;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #234;
-    background-color: #fff;
-  }
-  button {
-    background-color: #eee;
-  }
-}
-
 h1,
 h2 {
   font-weight: normal;
 }
+
+/* @media (prefers-color-scheme: light) {
+ TODO light mode
+} */
 
 .action {
   align-items: center;
@@ -172,8 +181,8 @@ h2 {
 }
 .board__tile {
   align-items: center;
-  background-color: #ffffff08;
-  border: 1px solid #fff3;
+  background-color: var(--bg-extralight);
+  border: 1px solid var(--border-light);
   border-radius: 0.75em;
   display: flex;
   height: calc(var(--card-height) + 0.5em);
@@ -181,15 +190,19 @@ h2 {
   width: calc(var(--card-width) + 0.5em);
 }
 .board__tile:hover {
-  border-color: #fff8;
+  border-color: var(--border-medium);
 }
 
 .card {
   align-items: center;
-  background-image: linear-gradient(to bottom, #222, #000);
-  border: 1px solid #888;
-  border-top-color: #bbb;
-  border-bottom-color: #666;
+  background-image: linear-gradient(
+    to bottom,
+    var(--card-bg-1),
+    var(--card-bg-2)
+  );
+  border: 1px solid var(--border-medium);
+  border-bottom-color: var(--border-medium-light);
+  border-top-color: var(--border-heavy);
   border-radius: 0.5em;
   display: flex;
   flex-direction: column;
@@ -200,15 +213,20 @@ h2 {
   width: var(--card-width);
 }
 .card--deck {
-  box-shadow: 1px 1px #000, 2px 2px #888, 3px 3px #000, 4px 4px #888;
+  box-shadow: 1px 1px var(--card-bg-2), 2px 2px var(--border-medium-light),
+    3px 3px var(--card-bg-2), 4px 4px var(--border-medium-light);
   margin-left: auto;
   margin-bottom: 0.7em;
 }
 .card--black path {
-  fill: #777;
+  fill: var(--card-black-color);
+}
+.card--no-border {
+  background: unset;
+  border: unset;
 }
 .card--red path {
-  fill: #d02;
+  fill: var(--card-red-color);
 }
 .card__face {
   font-size: 1.5em;
@@ -238,8 +256,10 @@ h2 {
 .deck {
   display: flex;
   flex-wrap: wrap;
+  font-size: 0.8em;
   list-style-type: none;
-  margin: 1em;
+  margin: 1em auto;
+  max-width: 30rem;
   padding: 0;
 }
 .deck > * {
@@ -251,8 +271,8 @@ h2 {
 }
 
 header {
-  background: #fff1;
-  border-bottom: 1px solid #fff3;
+  background: var(--bg-light);
+  border-bottom: 1px solid var(--border-light);
   display: flex;
   gap: 1em;
   padding: 1em;
@@ -273,17 +293,17 @@ header {
   font-size: 1.5em;
   height: calc(100% - 2em);
   margin: 1em auto;
-  max-width: 20em;
+  max-width: 30rem;
   position: relative;
   text-align: center;
   width: calc(100% - 2em);
 }
 .summary b {
-  color: #ff9c;
+  color: var(--text-highlighted);
 }
 .summary__scores {
-  border-bottom: 1px solid #fff6;
-  border-top: 1px solid #fff6;
+  border-bottom: 1px solid var(--border-medium);
+  border-top: 1px solid var(--border-medium);
   padding: 1.5em 4em;
 }
 .summary__score-row {

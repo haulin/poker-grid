@@ -1,5 +1,19 @@
-const SUITS = ['C', 'D', 'H', 'S'];
-const FACES = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
+export const SUITS = ['C', 'D', 'H', 'S'];
+export const FACES = [
+  '2',
+  '3',
+  '4',
+  '5',
+  '6',
+  '7',
+  '8',
+  '9',
+  'T',
+  'J',
+  'Q',
+  'K',
+  'A',
+];
 
 // TODO: not very efficient, maybe use lodash
 export const deepCopy = <T>(object: T): T => JSON.parse(JSON.stringify(object));

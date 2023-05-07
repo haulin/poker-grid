@@ -30,5 +30,4 @@
 - low priority
   - menu screen
   - payouts quick view
-  - view remaining deck ordered
   - achievements
