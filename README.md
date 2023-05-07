@@ -17,16 +17,18 @@
 
 # ToDo:
 
-- better layout, vertical responsiveness
-- count unused actives, high score
-- instructions
-
-- pick active
-- peek active
-- remove active
-- swap active
-
-- menu screen
-- payouts quick view
-- view remaining deck ordered
-- achievements
+- high priority
+  - better layout, vertical responsiveness
+  - light mode
+  - count unused actives, high score
+  - instructions
+- medium priority
+  - pick active
+  - peek active
+  - remove active
+  - swap active
+- low priority
+  - menu screen
+  - payouts quick view
+  - view remaining deck ordered
+  - achievements

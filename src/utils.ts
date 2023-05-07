@@ -1,5 +1,3 @@
-/* eslint @typescript-eslint/no-use-before-define: off */
-
 const SUITS = ['C', 'D', 'H', 'S'];
 const FACES = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
 

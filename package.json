@@ -5,12 +5,15 @@
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
+    "@capacitor/android": "^5.0.1",
+    "@capacitor/core": "^5.0.1",
     "loader-utils": "3.2.1",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-scripts": "5.0.1"
   },
   "devDependencies": {
+    "@capacitor/cli": "^5.0.1",
     "@types/react": "18.0.25",
     "@types/react-dom": "18.0.9",
     "typescript": "4.4.2"
