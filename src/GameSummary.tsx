@@ -1,4 +1,5 @@
-import { getHandByIndex, getScore, StateProps } from '.';
+import { useState } from 'react';
+import { Board, getHandByIndex, getScore, StateProps } from '.';
 
 function getOccurrences(array: string[]): { [key: string]: number } {
   const occurrences: { [key: string]: number } = {};
@@ -12,11 +13,11 @@ function getOccurrences(array: string[]): { [key: string]: number } {
   return occurrences;
 }
 
-export function GameSummary({ board }: StateProps) {
-  const isGameOver = board.every((tile) => tile !== '');
-  if (!isGameOver) return null;
+export function GameSummary(state: StateProps) {
+  const [gameOverView, setGameOverView] = useState(true);
+  if (!state.isGameOver) return null;
   const hands = Array.from(Array(12)).map((_, index) =>
-    getHandByIndex(board, index),
+    getHandByIndex(state.board, index),
   );
   const handCounts = getOccurrences(hands);
   delete handCounts['high-card'];
@@ -25,18 +26,44 @@ export function GameSummary({ board }: StateProps) {
 
   return (
     <div className="summary">
-      <h1>Game Over</h1>
-      <div className="summary__scores">
-        {Object.keys(handCounts).map((hand) => (
-          <div className="summary__score-row" key={hand}>
-            {handCounts[hand]}x {hand.replace(/-/g, ' ').toUpperCase()}
-            <b>{getScore(hand) * handCounts[hand]}</b>
-          </div>
-        ))}
+      <button
+        hidden={(state.screen === 'game' && !state.isGameOver) || !gameOverView}
+        onClick={() => {
+          if (state.isGameOver) {
+            setGameOverView(false);
+          } else {
+            state.update({
+              type: 'screen',
+              screen: 'game',
+            });
+          }
+        }}
+      >
+        View board
+      </button>
+      <button
+        hidden={!state.isGameOver || gameOverView}
+        onClick={() => setGameOverView(true)}
+      >
+        View summary
+      </button>
+      <div hidden={!gameOverView}>
+        <h1>Game Over</h1>
+        <div className="summary__scores">
+          {Object.keys(handCounts).map((hand) => (
+            <div className="summary__score-row" key={hand}>
+              {handCounts[hand]}x {hand.replace(/-/g, ' ').toUpperCase()}
+              <b>{getScore(hand) * handCounts[hand]}</b>
+            </div>
+          ))}
+        </div>
+        <h1>
+          Total score: <b>{totalScore}</b>
+        </h1>
       </div>
-      <h1>
-        Total score: <b>{totalScore}</b>
-      </h1>
+      <div hidden={gameOverView} style={{ fontSize: '1rem' }}>
+        <Board {...state} />
+      </div>
     </div>
   );
 }

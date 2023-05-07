@@ -266,10 +266,6 @@ h2 {
   margin: 0.5em;
 }
 
-.game-view {
-  display: grid;
-}
-
 header {
   background: var(--bg-light);
   border-bottom: 1px solid var(--border-light);
@@ -290,7 +286,7 @@ header {
 
 .summary {
   align-self: center;
-  font-size: 1.5em;
+  font-size: 1.25em;
   height: calc(100% - 2em);
   margin: 1em auto;
   max-width: 30rem;
@@ -311,12 +307,9 @@ header {
   justify-content: space-between;
 }
 
-.game-view {
+.table {
   display: flex;
   flex-direction: column;
-}
-
-.table {
   margin: auto;
   overflow: hidden;
   padding-left: 1em;

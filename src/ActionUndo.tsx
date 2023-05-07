@@ -12,9 +12,12 @@ export function activeUndoReducer(state: GameState, action: UpdateAction) {
       if (!state.previousState) return state;
       const newState = state.previousState;
       newState.actives = newState.actives.filter((active) => active !== 'undo');
+      newState.screen = state.screen;
       return newState;
     }
     case 'new-game':
+      return state;
+    case 'screen':
       return state;
     default: {
       const newState = deepCopy(state);
@@ -22,6 +25,8 @@ export function activeUndoReducer(state: GameState, action: UpdateAction) {
         actives: state.actives,
         board: state.board,
         deck: state.deck,
+        isGameOver: state.isGameOver,
+        screen: state.screen,
         seed: state.seed,
       };
       return newState;
