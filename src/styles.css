@@ -87,14 +87,15 @@ body {
 }
 
 button {
-  border-radius: 8px;
+  background-clip: padding-box;
+  background-color: var(--button-bg);
+  border-radius: 0.5em;
   border: 1px solid var(--border-light);
-  padding: 0.6em 1.2em;
+  cursor: pointer;
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: var(--button-bg);
-  cursor: pointer;
+  padding: 0.6em 1.2em;
   transition: border-color 0.25s;
 }
 button:not(:disabled):hover {
@@ -112,6 +113,11 @@ button:disabled {
 h1,
 h2 {
   font-weight: normal;
+}
+
+.container {
+  max-width: 30rem;
+  margin: auto;
 }
 
 /* @media (prefers-color-scheme: light) {

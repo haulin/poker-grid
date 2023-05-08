@@ -21,20 +21,14 @@ export function activeUndoReducer(state: GameState, action: UpdateAction) {
       return state;
     default: {
       const newState = deepCopy(state);
-      newState.previousState = {
-        actives: state.actives,
-        board: state.board,
-        deck: state.deck,
-        isGameOver: state.isGameOver,
-        screen: state.screen,
-        seed: state.seed,
-      };
+      const { previousState, ...rest } = newState;
+      newState.previousState = rest;
       return newState;
     }
   }
 }
 
-export function ActionUndo({ actives, update }: StateProps) {
+export function ActiveUndo({ actives, update }: StateProps) {
   const isEnabled = actives.includes('undo');
 
   return (

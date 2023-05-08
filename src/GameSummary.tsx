@@ -26,27 +26,10 @@ export function GameSummary(state: StateProps) {
 
   return (
     <div className="summary">
-      <button
-        hidden={(state.screen === 'game' && !state.isGameOver) || !gameOverView}
-        onClick={() => {
-          if (state.isGameOver) {
-            setGameOverView(false);
-          } else {
-            state.update({
-              type: 'screen',
-              screen: 'game',
-            });
-          }
-        }}
-      >
-        View board
+      <button onClick={() => setGameOverView(!gameOverView)}>
+        View {gameOverView ? 'board' : 'summary'}
       </button>
-      <button
-        hidden={!state.isGameOver || gameOverView}
-        onClick={() => setGameOverView(true)}
-      >
-        View summary
-      </button>
+
       <div hidden={!gameOverView}>
         <h1>Game Over</h1>
         <div className="summary__scores">
@@ -61,6 +44,7 @@ export function GameSummary(state: StateProps) {
           Total score: <b>{totalScore}</b>
         </h1>
       </div>
+
       <div hidden={gameOverView} style={{ fontSize: '1rem' }}>
         <Board {...state} />
       </div>

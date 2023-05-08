@@ -1,11 +1,11 @@
-import { useState } from 'react';
 import {
-  ActionDiscard,
-  ActionUndo,
+  ActiveDiscard,
+  ActiveUndo,
   Board,
   Card,
   Deck,
   GameSummary,
+  Instructions,
   useGameState,
 } from '.';
 
@@ -25,6 +25,17 @@ export function App() {
           New Game
         </button>
         <button
+          hidden={state.screen === 'instructions'}
+          onClick={() =>
+            state.update({
+              type: 'screen',
+              screen: 'instructions',
+            })
+          }
+        >
+          Instructions
+        </button>
+        <button
           hidden={state.screen === 'game'}
           onClick={() => {
             state.update({
@@ -35,12 +46,13 @@ export function App() {
         >
           View board
         </button>
+        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.2</span>
       </header>
       <div
         className="table"
         hidden={state.screen !== 'game' || state.isGameOver}
       >
-        <div className="sidebar" hidden={state.isGameOver}>
+        <div className="sidebar">
           <div style={{ marginRight: 'auto' }}>
             Next card
             <button
@@ -50,10 +62,13 @@ export function App() {
               <Card card={state.deck[0]} transparent />
             </button>
           </div>
-          <ActionUndo {...state} />
-          <ActionDiscard {...state} />
+          <ActiveUndo {...state} />
+          <ActiveDiscard {...state} />
         </div>
         <Board {...state} />
+      </div>
+      <div hidden={state.screen !== 'instructions'}>
+        <Instructions />
       </div>
       <div hidden={state.screen !== 'deck'}>
         <Deck deck={state.deck} />

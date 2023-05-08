@@ -21,7 +21,7 @@ export function activeDiscardReducer(state: GameState, action: UpdateAction) {
   }
 }
 
-export function ActionDiscard({ actives, update }: StateProps) {
+export function ActiveDiscard({ actives, update }: StateProps) {
   const isEnabled = actives.includes('discard');
 
   return (

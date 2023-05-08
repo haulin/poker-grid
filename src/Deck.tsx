@@ -8,6 +8,7 @@ export function Deck({ deck }: { deck: string[] }): JSX.Element {
       FACES.indexOf(b.charAt(0)) + 100 * SUITS.indexOf(b.charAt(1));
     return aOrder < bOrder ? -1 : 1;
   });
+
   return (
     <div className="deck">
       <h2>Cards left in deck (not in order):</h2>

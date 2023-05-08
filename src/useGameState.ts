@@ -13,7 +13,7 @@ interface InternalState {
   deck: string[];
   isGameOver: boolean;
   seed: string;
-  screen: 'deck' | 'game';
+  screen: 'deck' | 'game' | 'instructions';
 }
 
 export interface GameState extends InternalState {
@@ -64,24 +64,11 @@ function coreReducer(state: GameState, action: UpdateAction) {
       if (state.board[action.index]) return state;
       const newState = deepCopy(state);
       newState.board[action.index] = newState.deck.shift() || '';
+      newState.isGameOver = newState.board.every((tile) => tile !== '');
       return newState;
     }
     case 'new-game': {
       const newState: GameState = getInitialState();
-      return newState;
-    }
-    default:
-      return state;
-  }
-}
-
-function viewModeReducer(state: GameState, action: UpdateAction) {
-  switch (action.type) {
-    case 'board-click': {
-      const isGameOver = state.board.every((tile) => tile !== '');
-      if (!isGameOver) return state;
-      const newState = deepCopy(state);
-      newState.isGameOver = true;
       return newState;
     }
     case 'screen': {
@@ -100,7 +87,6 @@ export function useGameState() {
       let newState = activeUndoReducer(state, action);
       newState = coreReducer(newState, action);
       newState = activeDiscardReducer(newState, action);
-      newState = viewModeReducer(newState, action);
       return newState;
     },
     initialState,

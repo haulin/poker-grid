@@ -11,11 +11,12 @@ root.render(
   </React.StrictMode>,
 );
 
-export * from './ActionDiscard';
-export * from './ActionUndo';
+export * from './ActiveDiscard';
+export * from './ActiveUndo';
 export * from './Board';
 export * from './Card';
 export * from './Deck';
 export * from './GameSummary';
+export * from './Instructions';
 export * from './useGameState';
 export * from './utils';
