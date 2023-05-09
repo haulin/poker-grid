@@ -46,7 +46,7 @@ export function App() {
         >
           Back to game
         </button>
-        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.2</span>
+        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.3</span>
       </header>
       <div
         className="table"
