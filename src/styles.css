@@ -38,38 +38,38 @@
   --card-width: 5em;
   --text-highlighted: #ff9c;
 }
-/* total width: 33em */
-@media (min-width: calc(33 * 10px)) {
+/* total width: 33em, height: 59em */
+@media (min-width: calc(33 * 10px)) and (min-height: calc(59 * 10px)) {
   :root {
     font-size: 10px;
   }
 }
-@media (min-width: calc(33 * 11px)) {
+@media (min-width: calc(33 * 11px)) and (min-height: calc(59 * 11px)) {
   :root {
     font-size: 11px;
   }
 }
-@media (min-width: calc(33 * 12px)) {
+@media (min-width: calc(33 * 12px)) and (min-height: calc(59 * 12px)) {
   :root {
     font-size: 12px;
   }
 }
-@media (min-width: calc(33 * 13px)) {
+@media (min-width: calc(33 * 13px)) and (min-height: calc(59 * 13px)) {
   :root {
     font-size: 13px;
   }
 }
-@media (min-width: calc(33 * 14px)) {
+@media (min-width: calc(33 * 14px)) and (min-height: calc(59 * 14px)) {
   :root {
     font-size: 14px;
   }
 }
-@media (min-width: calc(33 * 15px)) {
+@media (min-width: calc(33 * 15px)) and (min-height: calc(59 * 15px)) {
   :root {
     font-size: 15px;
   }
 }
-@media (min-width: calc(33 * 16px)) {
+@media (min-width: calc(33 * 16px)) and (min-height: calc(59 * 16px)) {
   :root {
     font-size: 16px;
   }
