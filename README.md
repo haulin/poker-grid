@@ -9,13 +9,12 @@
 - May-6: game summary, better responsiveness, view deck removed, 16h
 - May-7: add Capacitor, color scheme in vars, view deck again, screen and isGameOver in gameState, 840 lines, 20h
 - May-8: simplify some code, add instructions, 21h
-- May-9: game icon, splash screen, vertical responsiveness, 23h
+- May-9: game icons, splash screen, vertical responsiveness, components folder, 23h
 
 # ToDo:
 
 - high priority
   - peek active
-  - favicon
   - count unused actives, high score
 - medium priority
   - pick active
