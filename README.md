@@ -14,7 +14,6 @@
 
 - high priority
   - vertical responsiveness
-  - instructions
 - medium priority
   - count unused actives, high score
   - pick active
@@ -30,3 +29,4 @@
   - light mode
   - sound
   - running total score
+  - credits + discord channel

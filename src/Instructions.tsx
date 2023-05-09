@@ -5,13 +5,12 @@ export function Instructions() {
       <p>
         Poker Grid is a solitaire poker game. Your goal is to place 25 cards, on
         a 5x5 grid, making the best poker hands you can horizontally,
-        vertically, or diagonally.
+        vertically, or diagonally. Click or tap an empty tile to place a card.
       </p>
       <p>
-        The deck is shuffled at the beginning of the game. You are dealt one
-        card at a time, and you must place it in an empty space. When you've
-        filled the grid with 25 cards, the game is over and you'll see your
-        total score.
+        The deck is shuffled at the beginning of the game and you are dealt one
+        card at a time. When you've filled the grid with 25 cards, the game is
+        over and you'll see your total score.
       </p>
       <p>
         You have a few active abilities at your disposal to use once during the
@@ -36,8 +35,9 @@ export function Instructions() {
       </ul>
       <h2>Prior art</h2>
       <p>
-        The basis of the game is known also as Poker Squares or Poker Solitaire
-        and many similar variants exist.
+        The basis of the game is known also as Poker Squares / Poker Solitaire /
+        Poker Patience and many similar variants exist. The origins date to at
+        least the autumn of 1908.
       </p>
       <h2>Attribution</h2>
       <p>

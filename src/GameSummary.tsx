@@ -25,7 +25,7 @@ export function GameSummary(state: StateProps) {
   const totalScore = scores.reduce((sum, score) => score + sum, 0);
 
   return (
-    <div className="summary">
+    <div className="summary container">
       <button onClick={() => setGameOverView(!gameOverView)}>
         View {gameOverView ? 'board' : 'summary'}
       </button>

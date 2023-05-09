@@ -117,7 +117,7 @@ h2 {
 
 .container {
   max-width: 30rem;
-  margin: auto;
+  margin-inline: auto;
 }
 
 /* @media (prefers-color-scheme: light) {
@@ -264,8 +264,7 @@ h2 {
   flex-wrap: wrap;
   font-size: 0.8em;
   list-style-type: none;
-  margin: 1em auto;
-  max-width: 30rem;
+  margin-block: 1em;
   padding: 0;
 }
 .deck > * {
@@ -294,8 +293,7 @@ header {
   align-self: center;
   font-size: 1.25em;
   height: calc(100% - 2em);
-  margin: 1em auto;
-  max-width: 30rem;
+  margin-block: 1em;
   position: relative;
   text-align: center;
   width: calc(100% - 2em);
