@@ -1,4 +1,5 @@
-import { Card, FACES, SUITS } from '.';
+import { Card } from '.';
+import { FACES, SUITS } from '..';
 
 export function Deck({ deck }: { deck: string[] }): JSX.Element {
   const sortedDeck = [...deck].sort((a, b) => {

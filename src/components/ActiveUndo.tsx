@@ -1,6 +1,5 @@
-import { ReactComponent as Undo } from './assets/action-undo.svg';
-import { GameState, StateProps, UpdateAction } from '.';
-import { deepCopy } from './utils';
+import { ReactComponent as Undo } from '../assets/action-undo.svg';
+import { deepCopy, GameState, StateProps, UpdateAction } from '..';
 
 export type ActionActiveUndo = {
   type: 'active-undo';

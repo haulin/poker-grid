@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Board, getHandByIndex, getScore, StateProps } from '.';
+import { Board } from '.';
+import { getHandByIndex, getScore, StateProps } from '..';
 
 function getOccurrences(array: string[]): { [key: string]: number } {
   const occurrences: { [key: string]: number } = {};

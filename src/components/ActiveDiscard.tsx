@@ -1,6 +1,5 @@
-import { ReactComponent as Discard } from './assets/action-discard.svg';
-import { GameState, StateProps, UpdateAction } from '.';
-import { deepCopy } from './utils';
+import { ReactComponent as Discard } from '../assets/action-discard.svg';
+import { deepCopy, GameState, StateProps, UpdateAction } from '..';
 
 export type ActionActiveDiscard = {
   type: 'active-discard';

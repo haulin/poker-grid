@@ -1,7 +1,7 @@
-import { ReactComponent as Club } from './assets/suit-club.svg';
-import { ReactComponent as Diamond } from './assets/suit-diamond.svg';
-import { ReactComponent as Heart } from './assets/suit-heart.svg';
-import { ReactComponent as Spade } from './assets/suit-spade.svg';
+import { ReactComponent as Club } from '../assets/suit-club.svg';
+import { ReactComponent as Diamond } from '../assets/suit-diamond.svg';
+import { ReactComponent as Heart } from '../assets/suit-heart.svg';
+import { ReactComponent as Spade } from '../assets/suit-spade.svg';
 
 type Suit = 'C' | 'D' | 'H' | 'S';
 

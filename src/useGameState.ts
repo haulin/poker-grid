@@ -4,8 +4,8 @@ import {
   ActionActiveUndo,
   activeDiscardReducer,
   activeUndoReducer,
-} from '.';
-import { deepCopy, generateBoard, generateDeck, shuffleDeck } from './utils';
+} from './components';
+import { deepCopy, generateBoard, generateDeck, shuffleDeck } from '.';
 
 interface InternalState {
   actives: string[];

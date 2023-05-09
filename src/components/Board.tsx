@@ -1,5 +1,5 @@
-import { Card, StateProps } from '.';
-import { getHandByIndex, getScore } from './utils';
+import { Card } from '.';
+import { getHandByIndex, getScore, StateProps } from '..';
 
 export function Board({ board, update }: StateProps) {
   return (

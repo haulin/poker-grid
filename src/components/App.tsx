@@ -6,10 +6,11 @@ import {
   Deck,
   GameSummary,
   Instructions,
-  useGameState,
 } from '.';
-
-import './styles.css';
+import {
+useGameState,
+} from '..';
+import '../styles.css';
 
 export function App() {
   const state = useGameState();
