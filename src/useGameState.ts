@@ -1,23 +1,29 @@
 import { useReducer } from 'react';
 import {
   ActionActiveDiscard,
+  ActionActivePeek,
   ActionActiveUndo,
+  ActiveDiscard,
   activeDiscardReducer,
+  ActivePeek,
+  activePeekReducer,
+  ActiveUndo,
   activeUndoReducer,
 } from './components';
 import { deepCopy, generateBoard, generateDeck, shuffleDeck } from '.';
 
-interface InternalState {
-  actives: string[];
+export interface GameState {
+  actives: {
+    discard: ActiveDiscard;
+    peek: ActivePeek;
+    undo: ActiveUndo;
+  };
   board: string[];
   deck: string[];
   isGameOver: boolean;
+  nextCardsVisible: number;
   seed: string;
   screen: 'deck' | 'game' | 'instructions';
-}
-
-export interface GameState extends InternalState {
-  previousState?: InternalState;
 }
 
 type ActionBoardClick = {
@@ -31,26 +37,39 @@ type ActionNewGame = {
 
 type ActionScreen = {
   type: 'screen';
-  screen: InternalState['screen'];
+  screen: GameState['screen'];
 };
 
-export type StateProps = InternalState & {
+export type StateProps = GameState & {
   update: React.Dispatch<UpdateAction>;
 };
 
 export type UpdateAction =
   | ActionActiveDiscard
+  | ActionActivePeek
   | ActionActiveUndo
   | ActionBoardClick
   | ActionNewGame
   | ActionScreen;
 
-function getInitialState(): InternalState {
+function getInitialState(): GameState {
   return {
-    actives: ['discard', 'undo'],
+    actives: {
+      discard: {
+        usesLeft: 1
+      },
+      peek: {
+        usesLeft: 1,
+      },
+      undo: {
+        usesLeft: 1,
+        previousState: undefined
+      }
+    },
     board: generateBoard(),
     deck: shuffleDeck(generateDeck()),
     isGameOver: false,
+    nextCardsVisible: 1,
     seed: Math.random().toString(36).slice(2),
     screen: 'game',
   };
@@ -65,6 +84,7 @@ function coreReducer(state: GameState, action: UpdateAction) {
       const newState = deepCopy(state);
       newState.board[action.index] = newState.deck.shift() || '';
       newState.isGameOver = newState.board.every((tile) => tile !== '');
+      newState.nextCardsVisible = Math.max(1, newState.nextCardsVisible - 1);
       return newState;
     }
     case 'new-game': {
@@ -87,6 +107,7 @@ export function useGameState() {
       let newState = activeUndoReducer(state, action);
       newState = coreReducer(newState, action);
       newState = activeDiscardReducer(newState, action);
+      newState = activePeekReducer(newState, action);
       return newState;
     },
     initialState,

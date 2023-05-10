@@ -232,11 +232,26 @@ h2 {
   background: unset;
   border: unset;
 }
+.card--obstructed {
+  align-items: start;
+  gap: 0.2em;
+  justify-content: start;
+}
+.card--obstructed .card__face {
+  font-size: 1.2em;
+  margin-top: 0.2em;
+}
+.card--obstructed .card__suit {
+  font-size: 1.6em;
+  margin-left: 0.2em;
+}
 .card--red path {
   fill: var(--card-red-color);
 }
 .card__face {
   font-size: 1.5em;
+  text-align: center;
+  width: 1.6em;
 }
 .card__suit {
   display: grid;
@@ -280,10 +295,23 @@ header {
   padding: 1em;
 }
 
-.sidebar {
-  align-items: center;
+.next-cards {
+  margin-right: auto;
+}
+.next-cards__deck {
   display: flex;
-  gap: 1em;
+  flex-direction: row-reverse;
+  justify-content: flex-end;
+}
+.next-cards__deck > * {
+  margin-right: -3em;
+}
+
+
+.sidebar {
+  align-items: end;
+  display: flex;
+  gap: 0.5em;
   margin: 1em 0 -4em;
   position: relative;
   width: 28.5em;

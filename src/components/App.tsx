@@ -1,15 +1,14 @@
 import {
   ActiveDiscard,
+  ActivePeek,
   ActiveUndo,
   Board,
-  Card,
   Deck,
   GameSummary,
   Instructions,
+  NextCards,
 } from '.';
-import {
-useGameState,
-} from '..';
+import { useGameState } from '..';
 import '../styles.css';
 
 export function App() {
@@ -47,24 +46,14 @@ export function App() {
         >
           Back to game
         </button>
-        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.3</span>
+        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.4</span>
       </header>
-      <div
-        className="table"
-        hidden={state.screen !== 'game' || state.isGameOver}
-      >
+      <div className="table" hidden={state.screen !== 'game' || state.isGameOver}>
         <div className="sidebar">
-          <div style={{ marginRight: 'auto' }}>
-            Next card
-            <button
-              className="action-button card card--deck"
-              onClick={() => state.update({ type: 'screen', screen: 'deck' })}
-            >
-              <Card card={state.deck[0]} transparent />
-            </button>
-          </div>
+          <NextCards {...state} />
           <ActiveUndo {...state} />
           <ActiveDiscard {...state} />
+          <ActivePeek {...state} />
         </div>
         <Board {...state} />
       </div>

@@ -5,13 +5,7 @@ import { ReactComponent as Spade } from '../assets/suit-spade.svg';
 
 type Suit = 'C' | 'D' | 'H' | 'S';
 
-export function Card({
-  card,
-  transparent,
-}: {
-  card: string;
-  transparent?: boolean;
-}): JSX.Element {
+export function Card({ card, className }: { card: string; className?: string }): JSX.Element {
   const color = 'CS'.indexOf(card.charAt(1)) === -1 ? 'red' : 'black';
   const symbols = {
     C: Club,
@@ -22,9 +16,7 @@ export function Card({
   const face = card.charAt(0).replace('T', '10');
   const Suit = symbols[card.charAt(1) as Suit];
   return (
-    <div
-      className={`card card--${color} ${transparent ? 'card--no-border' : ''}`}
-    >
+    <div className={`card card--${color} ${className}`}>
       <span className="card__face">{face}</span>
       <span className="card__suit">
         <Suit />

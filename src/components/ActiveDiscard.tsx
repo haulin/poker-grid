@@ -1,8 +1,12 @@
-import { ReactComponent as Discard } from '../assets/action-discard.svg';
+import { ReactComponent as Discard } from '../assets/active-discard.svg';
 import { deepCopy, GameState, StateProps, UpdateAction } from '..';
 
 export type ActionActiveDiscard = {
   type: 'active-discard';
+};
+
+export type ActiveDiscard = {
+  usesLeft: number;
 };
 
 export function activeDiscardReducer(state: GameState, action: UpdateAction) {
@@ -10,9 +14,7 @@ export function activeDiscardReducer(state: GameState, action: UpdateAction) {
     case 'active-discard': {
       const newState = deepCopy(state);
       newState.deck.shift();
-      newState.actives = newState.actives.filter(
-        (active) => active !== 'discard',
-      );
+      newState.actives.discard.usesLeft -= 1;
       return newState;
     }
     default:
@@ -21,13 +23,10 @@ export function activeDiscardReducer(state: GameState, action: UpdateAction) {
 }
 
 export function ActiveDiscard({ actives, update }: StateProps) {
-  const isEnabled = actives.includes('discard');
+  const isEnabled = actives.discard.usesLeft > 0;
 
   return (
-    <div
-      className="action"
-      title={isEnabled ? 'Discard next card' : 'Already used'}
-    >
+    <div className="action" title={isEnabled ? 'Discard next card' : 'Already used'}>
       <button
         className="action__button"
         disabled={!isEnabled}
