@@ -37,11 +37,11 @@ export function generateDeck(): string[] {
 }
 
 export function getHand(hand: string): string {
-  let cards = hand.split(' ').filter((x) => x !== 'joker');
-  let jokers = hand.split(' ').length - cards.length;
+  const cards = hand.split(' ').filter((x) => x !== 'joker');
+  const jokers = hand.split(' ').length - cards.length;
 
-  let faces = cards.map((card) => FACES.indexOf(card.slice(0, -1)));
-  let suits = cards.map((card) => SUITS.indexOf(card.slice(-1)));
+  const faces = cards.map((card) => FACES.indexOf(card.slice(0, -1)));
+  const suits = cards.map((card) => SUITS.indexOf(card.slice(-1)));
 
   if (
     cards.some((card, i, self) => i !== self.indexOf(card)) ||
@@ -50,16 +50,16 @@ export function getHand(hand: string): string {
   )
     return 'invalid';
 
-  let flush = suits.every((suit) => suit === suits[0]);
-  let groups = FACES.map((face, i) => faces.filter((j) => i === j).length).sort(
+  const flush = suits.every((suit) => suit === suits[0]);
+  const groups = FACES.map((face, i) => faces.filter((j) => i === j).length).sort(
     (x, y) => y - x,
   );
-  let shifted = faces.map((x) => (x + 1) % 13);
-  let distance = Math.min(
+  const shifted = faces.map((x) => (x + 1) % 13);
+  const distance = Math.min(
     Math.max(...faces) - Math.min(...faces),
     Math.max(...shifted) - Math.min(...shifted),
   );
-  let straight = groups[0] === 1 && distance < 5;
+  const straight = groups[0] === 1 && distance < 5;
   groups[0] += jokers;
 
   if (groups[0] === 5) return 'five-of-a-kind';
@@ -107,6 +107,7 @@ export function getScore(hand: string): number {
       'three-of-a-kind': 6,
       flush: 5,
       'two-pair': 2,
+      'unused-active': 2,
       'one-pair': 1,
     }[hand] || 0
   );

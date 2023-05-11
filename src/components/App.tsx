@@ -46,7 +46,7 @@ export function App() {
         >
           Back to game
         </button>
-        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.4</span>
+        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.5</span>
       </header>
       <div className="table" hidden={state.screen !== 'game' || state.isGameOver}>
         <div className="sidebar">
@@ -63,7 +63,7 @@ export function App() {
       <div hidden={state.screen !== 'deck'}>
         <Deck deck={state.deck} />
       </div>
-      <div hidden={!state.isGameOver || state.screen !== 'game'}>
+      <div hidden={state.screen !== 'game'}>
         <GameSummary key={state.seed} {...state} />
       </div>
     </>

@@ -10,17 +10,17 @@
 - May-7: add Capacitor, color scheme in vars, view deck again, screen and isGameOver in gameState, 840 lines, 20h
 - May-8: simplify some code, add instructions, 21h
 - May-9: game icons, splash screen, vertical responsiveness, components folder, 23h
-- May-10: peek active, prettier, eslint, 25h
+- May-10: peek active, prettier, eslint, 980 lines, 25h
+- May-11: count unused actives, high score, scrolling, transparent actives, 27h
 
 # ToDo:
 
 - high priority
-  - count unused actives, high score
-- medium priority
+  - bomb active
   - menu screen
+- medium priority
   - running total score
   - pick active
-  - bomb active
   - swap active
 - low priority
   - lock orientation
