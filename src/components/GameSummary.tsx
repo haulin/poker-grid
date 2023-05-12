@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Board } from '.';
 import { ReactComponent as HighScoreNew } from '../assets/high-score-new.svg';
+import { ReactComponent as SummaryStars } from '../assets/summary-stars.svg';
 import { getHandByIndex, getScore, StateProps } from '..';
 
 type PokerGridData = {
@@ -76,7 +77,10 @@ export function GameSummary(state: StateProps) {
       </button>
 
       <div hidden={!gameOverView}>
-        <h1>Game Over</h1>
+        <div className="summary__header">
+          <h1>Game Over</h1>
+          <SummaryStars />
+        </div>
         <div className="summary__scores">
           {Object.keys(handCounts).map((hand) => (
             <div className="summary__score-row" key={hand}>

@@ -37,7 +37,7 @@ export function Instructions() {
         many similar variants exist. The origins date to at least the autumn of 1908.
       </p>
       <h2>Attribution</h2>
-      <p>Some icons were used from https://game-icons.net/ and https://www.svgrepo.com.</p>
+      <p>Some icons were used from game-icons.net and svgrepo.com.</p>
     </div>
   );
 }

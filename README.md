@@ -19,10 +19,12 @@
   - bomb active
   - menu screen
 - medium priority
-  - running total score
+  - games played counter
   - pick active
   - swap active
 - low priority
+  - running total score
+  - custom font
   - lock orientation
   - payouts quick view
   - achievements

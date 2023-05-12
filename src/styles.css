@@ -1,19 +1,19 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@500;700&display=swap');
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
 :root {
-  --bg-extralight: #ffffff08;
   --bg-light: #fff1;
-  --body-bg-1: #315;
-  --body-bg-2: #111;
-  --border-light: #fff3;
-  --border-medium-light: #fff5;
+  --bg-medium: #fff2;
+  --body-bg-1: #315d;
+  --body-bg-2: #111d;
+  --border-light: #fff5;
   --border-medium: #fff7;
   --border-heavy: #fffb;
   --button-bg: #111;
-  --button-hover-border: #ff99;
+  --button-hover-border: #ca2;
   --card-bg-1: #222;
   --card-bg-2: #000;
   --card-black-color: #777;
@@ -21,19 +21,19 @@
   --card-height: 7em;
   --card-width: 5em;
   --high-score-shadow: black;
-  --text-highlighted: #ff9c;
+  --text-highlighted: #ca2;
 
-  background-image: linear-gradient(135deg, var(--body-bg-1), var(--body-bg-2));
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  background-color: var(--body-bg-1);
+  background-image: linear-gradient(135deg, var(--body-bg-1), var(--body-bg-2)), url(assets/bg-pattern.png);
+  color: #fffb;
+  color-scheme: only dark;
+  font-family: Quicksand, Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 9px;
-  font-weight: 400;
+  font-weight: 500;
   height: 100%;
   line-height: 1.4;
   overflow: hidden;
 
-  color-scheme: only dark;
-  color: #fffb;
-  background-color: var(--body-bg-1);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -41,38 +41,38 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
-/* total width: 33em, height: 59em */
-@media (min-width: calc(33 * 10px)) and (min-height: calc(59 * 10px)) {
+/* total width: 33em, height: 61em */
+@media (min-width: calc(33 * 10px)) and (min-height: calc(61 * 10px)) {
   :root {
     font-size: 10px;
   }
 }
-@media (min-width: calc(33 * 11px)) and (min-height: calc(59 * 11px)) {
+@media (min-width: calc(33 * 11px)) and (min-height: calc(61 * 11px)) {
   :root {
     font-size: 11px;
   }
 }
-@media (min-width: calc(33 * 12px)) and (min-height: calc(59 * 12px)) {
+@media (min-width: calc(33 * 12px)) and (min-height: calc(61 * 12px)) {
   :root {
     font-size: 12px;
   }
 }
-@media (min-width: calc(33 * 13px)) and (min-height: calc(59 * 13px)) {
+@media (min-width: calc(33 * 13px)) and (min-height: calc(61 * 13px)) {
   :root {
     font-size: 13px;
   }
 }
-@media (min-width: calc(33 * 14px)) and (min-height: calc(59 * 14px)) {
+@media (min-width: calc(33 * 14px)) and (min-height: calc(61 * 14px)) {
   :root {
     font-size: 14px;
   }
 }
-@media (min-width: calc(33 * 15px)) and (min-height: calc(59 * 15px)) {
+@media (min-width: calc(33 * 15px)) and (min-height: calc(61 * 15px)) {
   :root {
     font-size: 15px;
   }
 }
-@media (min-width: calc(33 * 16px)) and (min-height: calc(59 * 16px)) {
+@media (min-width: calc(33 * 16px)) and (min-height: calc(61 * 16px)) {
   :root {
     font-size: 16px;
   }
@@ -93,11 +93,11 @@ button {
   background-clip: padding-box;
   background-color: var(--button-bg);
   border-radius: 0.5em;
-  border: 1px solid var(--border-light);
+  border: 1px solid transparent;
   color: inherit;
   cursor: pointer;
   font-size: 1em;
-  font-weight: 500;
+  font-weight: 700;
   font-family: inherit;
   padding: 0.6em 1.2em;
   transition: border-color 0.25s;
@@ -106,8 +106,8 @@ button:not(:disabled):hover {
   border-color: var(--button-hover-border);
 }
 button:focus,
-button:focus-visible {
-  outline: 4px auto var(--button-hover-border);
+button:focus-visible{
+  outline: 2px solid var(--button-hover-border);
 }
 button:disabled {
   cursor: unset;
@@ -115,7 +115,7 @@ button:disabled {
 }
 
 h1, h2, h3 {
-  font-weight: normal;
+  font-weight: 500;
 }
 
 .container {
@@ -131,7 +131,6 @@ h1, h2, h3 {
   align-items: center;
   display: flex;
   flex-direction: column;
-  gap: 0.25em;
 }
 .action__button {
   background-color: transparent;
@@ -140,7 +139,7 @@ h1, h2, h3 {
 }
 .action__button svg {
   display: block;
-  height: 2.5em;
+  height: 2.8em;
   width: auto;
 }
 .action__name--strike {
@@ -192,8 +191,7 @@ h1, h2, h3 {
 }
 .board__tile {
   align-items: center;
-  background-color: var(--bg-extralight);
-  border: 1px solid var(--border-light);
+  background-color: var(--bg-light);
   border-radius: 0.75em;
   display: flex;
   height: calc(var(--card-height) + 0.5em);
@@ -201,7 +199,7 @@ h1, h2, h3 {
   width: calc(var(--card-width) + 0.5em);
 }
 .board__tile:hover {
-  border-color: var(--border-medium);
+  background-color: var(--bg-medium);
 }
 
 .card {
@@ -212,7 +210,7 @@ h1, h2, h3 {
     var(--card-bg-2)
   );
   border: 1px solid var(--border-medium);
-  border-bottom-color: var(--border-medium-light);
+  border-bottom-color: var(--border-light);
   border-top-color: var(--border-heavy);
   border-radius: 0.5em;
   display: flex;
@@ -224,8 +222,8 @@ h1, h2, h3 {
   width: var(--card-width);
 }
 .card--deck {
-  box-shadow: -1px -1px var(--card-bg-2), -2px -2px var(--border-medium-light),
-    -3px -3px var(--card-bg-2), -4px -4px var(--border-medium-light);
+  box-shadow: -1px -1px var(--card-bg-2), -2px -2px var(--border-light),
+    -3px -3px var(--card-bg-2), -4px -4px var(--border-light);
   margin-left: auto;
   margin-top: 0.5em;
 
@@ -283,7 +281,7 @@ h1, h2, h3 {
 .deck {
   display: flex;
   flex-wrap: wrap;
-  font-size: 0.8em;
+  font-size: 0.83em;
   list-style-type: none;
   margin-block: 1em;
   padding: 0;
@@ -314,7 +312,9 @@ header {
 }
 .high-score svg {
   height: 10em;
+  opacity: 0.7;
   width: auto;
+  z-index: -1;
 }
 
 .instructions {
@@ -341,7 +341,7 @@ header {
   align-items: end;
   display: flex;
   gap: 0.5em;
-  margin: 1em 0 -4em;
+  margin: 1em 0 -3em;
   position: relative;
   width: 28.5em;
   z-index: 1;
@@ -359,9 +359,23 @@ header {
 .summary b {
   color: var(--text-highlighted);
 }
+.summary button {
+  display: flex;
+}
+.summary__header {
+  display: grid;
+  place-items: start center;
+}
+.summary__header > * {
+  grid-area: 1/1;
+}
+.summary__header svg {
+  height: 2em;
+  width: auto;
+}
 .summary__scores {
-  border-bottom: 1px solid var(--border-medium);
-  border-top: 1px solid var(--border-medium);
+  border-bottom: 1px solid var(--border-light);
+  border-top: 1px solid var(--border-light);
   padding: 1.5em 4em;
 }
 .summary__score-row {
