@@ -21,15 +21,20 @@ export interface GameState {
   board: string[];
   deck: string[];
   isGameOver: boolean;
+  isGameInProgress: boolean;
   nextCardsVisible: number;
   seed: string;
-  screen: 'deck' | 'game' | 'instructions';
+  screen: 'deck' | 'game' | 'instructions' | 'menu';
 }
 
 type ActionBoardClick = {
   index: number;
   type: 'board-click';
 };
+
+type ActionFinishGame = {
+  type: 'finish-game';
+}
 
 type ActionNewGame = {
   type: 'new-game';
@@ -49,6 +54,7 @@ export type UpdateAction =
   | ActionActivePeek
   | ActionActiveUndo
   | ActionBoardClick
+  | ActionFinishGame
   | ActionNewGame
   | ActionScreen;
 
@@ -68,10 +74,11 @@ function getInitialState(): GameState {
     },
     board: generateBoard(),
     deck: shuffleDeck(generateDeck()),
+    isGameInProgress: false,
     isGameOver: false,
     nextCardsVisible: 1,
     seed: Math.random().toString(36).slice(2),
-    screen: 'game',
+    screen: 'menu',
   };
 }
 
@@ -87,8 +94,15 @@ function coreReducer(state: GameState, action: UpdateAction) {
       newState.nextCardsVisible = Math.max(1, newState.nextCardsVisible - 1);
       return newState;
     }
+    case 'finish-game': {
+      state.isGameInProgress = false;
+      state.screen = 'menu';
+      return state;
+    }
     case 'new-game': {
       const newState: GameState = getInitialState();
+      newState.screen = 'game';
+      newState.isGameInProgress = true;
       return newState;
     }
     case 'screen': {

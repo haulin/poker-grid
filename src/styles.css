@@ -9,10 +9,9 @@
   --bg-medium: #fff2;
   --body-bg-1: #315d;
   --body-bg-2: #111d;
-  --border-light: #fff5;
-  --border-medium: #fff7;
-  --border-heavy: #fffb;
-  --button-bg: #111;
+  --border-light: #fff3;
+  --border-medium: #fff5;
+  --border-heavy: #fff9;
   --button-hover-border: #ca2;
   --card-bg-1: #222;
   --card-bg-2: #000;
@@ -91,7 +90,7 @@ body {
 
 button {
   background-clip: padding-box;
-  background-color: var(--button-bg);
+  background-color: var(--bg-medium);
   border-radius: 0.5em;
   border: 1px solid transparent;
   color: inherit;
@@ -116,6 +115,11 @@ button:disabled {
 
 h1, h2, h3 {
   font-weight: 500;
+}
+
+.button-row {
+  display: inline-flex;
+  gap: 1em;
 }
 
 .container {
@@ -292,9 +296,9 @@ h1, h2, h3 {
 
 header {
   background: var(--bg-light);
-  border-bottom: 1px solid var(--border-light);
   display: flex;
   gap: 1em;
+  height: 4.6em;
   padding: 1em;
 }
 
@@ -319,7 +323,47 @@ header {
 
 .instructions {
   font-size: 1.25em;
-  padding: 2em 0 10em;
+  padding: 1em 0 5em;
+}
+
+.menu-screen {
+  text-align: center;
+}
+.menu-screen__buttons {
+  display: flex;
+  flex-direction: column;
+  font-size: 1.5em;
+  gap: 1em;
+  margin: 3em auto 0;
+  width: 10em;
+}
+.menu-screen__suits {
+  display: grid;
+  gap: 0.5em 0;
+  grid: 1fr 1fr / 1fr 1fr;
+  padding: 1em 0.5em;
+  place-items: center;
+}
+.menu-screen__suits svg {
+  height: 1.5em;
+  width: auto;
+}
+.menu-screen__suits path {
+  fill: var(--card-black-color);
+}
+.menu-screen__suits svg:nth-child(2) path,
+.menu-screen__suits svg:nth-child(3) path {
+  fill: var(--card-red-color);
+}
+.menu-screen__title {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1em;
+  margin: 2em 0;
+}
+.menu-screen__title span {
+  font-size: 4em;
+  font-weight: bold;
 }
 
 .next-cards {
@@ -361,6 +405,7 @@ header {
 }
 .summary button {
   display: flex;
+  font-size: 1rem;
 }
 .summary__header {
   display: grid;
@@ -371,6 +416,8 @@ header {
 }
 .summary__header svg {
   height: 2em;
+  position: relative;
+  top: -0.5em;
   width: auto;
 }
 .summary__scores {

@@ -12,6 +12,7 @@
 - May-9: game icons, splash screen, vertical responsiveness, components folder, 23h
 - May-10: peek active, prettier, eslint, 980 lines, 25h
 - May-11: count unused actives, high score, scrolling, transparent actives, 27h
+- May-12: menu screen, Quicksand font, many design tweaks, 29h
 
 # ToDo:
 
@@ -24,7 +25,6 @@
   - swap active
 - low priority
   - running total score
-  - custom font
   - lock orientation
   - payouts quick view
   - achievements

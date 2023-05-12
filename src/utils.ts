@@ -113,6 +113,25 @@ export function getScore(hand: string): number {
   );
 }
 
+type PokerGridData = {
+  highScore: number;
+};
+
+export function highScoreGet() {
+  const maybeData = window.localStorage.getItem('pokerGridJson');
+  if (!maybeData) return 0;
+  const data = JSON.parse(maybeData) as PokerGridData;
+  return data.highScore;
+}
+
+export function highScoreSet(score: number) {
+  const maybeData = window.localStorage.getItem('pokerGridJson');
+  const data: PokerGridData = maybeData ? JSON.parse(maybeData) : { highScore: 0 };
+  data.highScore = score;
+  window.localStorage.setItem('pokerGridJson', JSON.stringify(data));
+}
+
+
 export function shuffleDeck(deck: string[]): string[] {
   for (let i = deck.length - 1; i > 0; i--) {
     const j = Math.floor(Math.random() * (i + 1));
