@@ -1,8 +1,11 @@
 import { useReducer } from 'react';
 import {
+  ActionActiveBomb,
   ActionActiveDiscard,
   ActionActivePeek,
   ActionActiveUndo,
+  ActiveBomb,
+  activeBombReducer,
   ActiveDiscard,
   activeDiscardReducer,
   ActivePeek,
@@ -14,6 +17,7 @@ import { deepCopy, generateBoard, generateDeck, shuffleDeck } from '.';
 
 export interface GameState {
   actives: {
+    bomb: ActiveBomb;
     discard: ActiveDiscard;
     peek: ActivePeek;
     undo: ActiveUndo;
@@ -25,6 +29,7 @@ export interface GameState {
   nextCardsVisible: number;
   seed: string;
   screen: 'deck' | 'game' | 'instructions' | 'menu';
+  skipCoreReducer: boolean;
 }
 
 type ActionBoardClick = {
@@ -50,6 +55,7 @@ export type StateProps = GameState & {
 };
 
 export type UpdateAction =
+  | ActionActiveBomb
   | ActionActiveDiscard
   | ActionActivePeek
   | ActionActiveUndo
@@ -61,6 +67,10 @@ export type UpdateAction =
 function getInitialState(): GameState {
   return {
     actives: {
+      bomb: {
+        isEngaged: false,
+        usesLeft: 1,
+      },
       discard: {
         usesLeft: 1
       },
@@ -79,12 +89,14 @@ function getInitialState(): GameState {
     nextCardsVisible: 1,
     seed: Math.random().toString(36).slice(2),
     screen: 'menu',
+    skipCoreReducer: false,
   };
 }
 
 const initialState = getInitialState();
 
 function coreReducer(state: GameState, action: UpdateAction) {
+  if (state.skipCoreReducer) return state;
   switch (action.type) {
     case 'board-click': {
       if (state.board[action.index]) return state;
@@ -122,6 +134,7 @@ export function useGameState() {
       newState = coreReducer(newState, action);
       newState = activeDiscardReducer(newState, action);
       newState = activePeekReducer(newState, action);
+      newState = activeBombReducer(newState, action);
       return newState;
     },
     initialState,

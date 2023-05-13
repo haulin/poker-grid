@@ -10,6 +10,7 @@ export type ActiveDiscard = {
 };
 
 export function activeDiscardReducer(state: GameState, action: UpdateAction) {
+  if (state.skipCoreReducer) return state;
   switch (action.type) {
     case 'active-discard': {
       const newState = deepCopy(state);
@@ -26,15 +27,14 @@ export function ActiveDiscard({ actives, update }: StateProps) {
   const isEnabled = actives.discard.usesLeft > 0;
 
   return (
-    <div className="action" title={isEnabled ? 'Discard next card' : 'Already used'}>
-      <button
-        className="action__button"
-        disabled={!isEnabled}
-        onClick={() => update({ type: 'active-discard' })}
-      >
-        <Discard />
-      </button>
-      <span className={isEnabled ? '' : 'action__name--strike'}>Discard</span>
-    </div>
+    <button
+      className="active"
+      disabled={!isEnabled}
+      onClick={() => update({ type: 'active-discard' })}
+      title={isEnabled ? 'Discard next card' : 'Already used'}
+    >
+      <Discard />
+      <span className={isEnabled ? '' : 'active__name--strike'}>Discard</span>
+    </button>
   );
 }

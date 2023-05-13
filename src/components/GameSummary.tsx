@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Board } from '.';
 import { ReactComponent as HighScoreNew } from '../assets/high-score-new.svg';
 import { ReactComponent as SummaryStars } from '../assets/summary-stars.svg';
-import { getHandByIndex, getScore, highScoreGet, highScoreSet, StateProps } from '..';
+import { getScore, getSummary, highScoreGet, highScoreSet, StateProps } from '..';
 
 function formatHand(
   hand: string,
@@ -13,36 +13,10 @@ function formatHand(
   return `${handCounts[hand]}x ${hand.replace(/-/g, ' ').toUpperCase()}`;
 }
 
-function getHands(state: StateProps) {
-  const hands = Array.from(Array(12)).map((_, index) => getHandByIndex(state.board, index));
-  const actives = (Object.keys(state.actives) as (keyof StateProps['actives'])[])
-    .map((active) => (state.actives[active].usesLeft > 0 ? 'unused-active' : ''))
-    .filter(Boolean);
-  const handsWithActives = [...hands, ...actives];
-  return handsWithActives;
-}
-
-function getOccurrences(array: string[]): { [key: string]: number } {
-  const occurrences: { [key: string]: number } = {};
-  for (const string of array) {
-    if (occurrences[string] === undefined) {
-      occurrences[string] = 1;
-    } else {
-      occurrences[string]++;
-    }
-  }
-  return occurrences;
-}
-
 export function GameSummary(state: StateProps) {
   const [gameOverView, setGameOverView] = useState(true);
   const [highScore] = useState(highScoreGet());
-
-  const hands = getHands(state);
-  const handCounts = getOccurrences(hands);
-  delete handCounts['high-card'];
-  const scores = hands.map((hand) => getScore(hand));
-  const totalScore = scores.reduce((sum, score) => score + sum, 0);
+  const { handCounts, totalScore } = getSummary(state);
 
   useEffect(() => {
     if (totalScore > highScore) {
@@ -83,7 +57,7 @@ export function GameSummary(state: StateProps) {
       <div hidden={gameOverView} style={{ fontSize: '1rem' }}>
         <Board {...state} />
       </div>
-      <div className="button-row">
+      <div className="button-row" style={{ marginTop: '1em' }}>
         <button onClick={() => setGameOverView(!gameOverView)}>
           View {gameOverView ? 'board' : 'summary'}
         </button>

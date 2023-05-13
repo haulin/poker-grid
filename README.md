@@ -12,24 +12,24 @@
 - May-9: game icons, splash screen, vertical responsiveness, components folder, 23h
 - May-10: peek active, prettier, eslint, 980 lines, 25h
 - May-11: count unused actives, high score, scrolling, transparent actives, 27h
-- May-12: menu screen, Quicksand font, many design tweaks, 29h
+- May-12: menu screen, Quicksand font, many design tweaks, 1230 lines, 29h
+- May-13: bomb active, actives restyled, running score, radial backgrounds, 30h
 
 # ToDo:
 
 - high priority
-  - bomb active
-  - menu screen
-- medium priority
   - games played counter
+- medium priority
+  - payouts quick view
   - pick active
   - swap active
 - low priority
-  - running total score
   - lock orientation
-  - payouts quick view
   - achievements
   - sound
 - bonus
+  - reset progress
+  - view board doesn't hide buttons
   - light mode
   - horizontal orientation
   - credits + discord channel

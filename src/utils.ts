@@ -1,3 +1,5 @@
+import { StateProps } from "./useGameState";
+
 export const SUITS = ['C', 'D', 'H', 'S'];
 export const FACES = [
   '2',
@@ -96,6 +98,27 @@ export function getHandByIndex(board: string[], index: number): string {
   return '';
 }
 
+function getHands(state: StateProps) {
+  const hands = Array.from(Array(12)).map((_, index) => getHandByIndex(state.board, index));
+  const actives = (Object.keys(state.actives) as (keyof StateProps['actives'])[])
+    .map((active) => (state.actives[active].usesLeft > 0 ? 'unused-active' : ''))
+    .filter(Boolean);
+  const handsWithActives = [...hands, ...actives];
+  return handsWithActives;
+}
+
+function getOccurrences(array: string[]): { [key: string]: number } {
+  const occurrences: { [key: string]: number } = {};
+  for (const string of array) {
+    if (occurrences[string] === undefined) {
+      occurrences[string] = 1;
+    } else {
+      occurrences[string]++;
+    }
+  }
+  return occurrences;
+}
+
 export function getScore(hand: string): number {
   return (
     {
@@ -111,6 +134,15 @@ export function getScore(hand: string): number {
       'one-pair': 1,
     }[hand] || 0
   );
+}
+
+export function getSummary(state: StateProps) {
+  const hands = getHands(state);
+  const handCounts = getOccurrences(hands);
+  delete handCounts['high-card'];
+  const scores = hands.map((hand) => getScore(hand));
+  const totalScore = scores.reduce((sum, score) => score + sum, 0);
+  return { handCounts, totalScore };
 }
 
 type PokerGridData = {
@@ -130,7 +162,6 @@ export function highScoreSet(score: number) {
   data.highScore = score;
   window.localStorage.setItem('pokerGridJson', JSON.stringify(data));
 }
-
 
 export function shuffleDeck(deck: string[]): string[] {
   for (let i = deck.length - 1; i > 0; i--) {

@@ -10,6 +10,7 @@ export type ActivePeek = {
 };
 
 export function activePeekReducer(state: GameState, action: UpdateAction) {
+  if (state.skipCoreReducer) return state;
   switch (action.type) {
     case 'active-peek': {
       const newState = deepCopy(state);
@@ -26,15 +27,14 @@ export function ActivePeek({ actives, update }: StateProps) {
   const isEnabled = actives.peek.usesLeft > 0;
 
   return (
-    <div className="action" title={isEnabled ? 'See next 5 cards' : 'Already used'}>
-      <button
-        className="action__button"
-        disabled={!isEnabled}
-        onClick={() => update({ type: 'active-peek' })}
-      >
-        <Peek />
-      </button>
-      <span className={isEnabled ? '' : 'action__name--strike'}>Peek</span>
-    </div>
+    <button
+      className="active"
+      disabled={!isEnabled}
+      onClick={() => update({ type: 'active-peek' })}
+      title={isEnabled ? 'See next 5 cards' : 'Already used'}
+    >
+      <Peek />
+      <span className={isEnabled ? '' : 'active__name--strike'}>Peek</span>
+    </button>
   );
 }

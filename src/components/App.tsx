@@ -1,4 +1,5 @@
 import {
+  ActiveBomb,
   ActiveDiscard,
   ActivePeek,
   ActiveUndo,
@@ -8,12 +9,14 @@ import {
   Instructions,
   NextCards,
 } from '.';
-import { useGameState } from '..';
+import { getSummary, highScoreGet, useGameState } from '..';
 import '../styles.css';
 import { MenuScreen } from './MenuScreen';
 
 export function App() {
   const state = useGameState();
+  const highScore = highScoreGet();
+  const { totalScore } = getSummary(state);
 
   return (
     <>
@@ -40,19 +43,26 @@ export function App() {
         >
           Back to game
         </button>
-        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.6</span>
+        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.7</span>
       </header>
       <div hidden={state.screen !== 'menu'}>
         <MenuScreen {...state} />
       </div>
       <div className="table" hidden={state.screen !== 'game' || state.isGameOver}>
-        <div className="sidebar">
+        <div className="status-bar">
           <NextCards {...state} />
+          <div className="status-bar__scores">
+            <b>Score: {totalScore}</b>
+            <small>High score: {highScore}</small>
+          </div>
+        </div>
+        <Board {...state} />
+        <div className="actives">
           <ActiveUndo {...state} />
           <ActiveDiscard {...state} />
           <ActivePeek {...state} />
+          <ActiveBomb {...state} />
         </div>
-        <Board {...state} />
       </div>
       <div hidden={state.screen !== 'instructions'}>
         <Instructions />

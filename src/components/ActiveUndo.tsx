@@ -11,6 +11,7 @@ export type ActiveUndo = {
 };
 
 export function activeUndoReducer(state: GameState, action: UpdateAction) {
+  if (state.skipCoreReducer) return state;
   switch (action.type) {
     case 'active-undo': {
       if (!state.actives.undo.previousState) return state;
@@ -35,15 +36,14 @@ export function ActiveUndo({ actives, update }: StateProps) {
   const isEnabled = actives.undo.usesLeft > 0;
 
   return (
-    <div className="action" title={isEnabled ? 'Undo move' : 'Already used'}>
-      <button
-        className="action__button"
-        disabled={!isEnabled}
-        onClick={() => update({ type: 'active-undo' })}
-      >
-        <Undo />
-      </button>
-      <span className={isEnabled ? '' : 'action__name--strike'}>Undo</span>
-    </div>
+    <button
+      className="active"
+      disabled={!isEnabled}
+      onClick={() => update({ type: 'active-undo' })}
+      title={isEnabled ? 'Undo move' : 'Already used'}
+    >
+      <Undo />
+      <span className={isEnabled ? '' : 'active__name--strike'}>Undo</span>
+    </button>
   );
 }

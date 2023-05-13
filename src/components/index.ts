@@ -1,3 +1,4 @@
+export * from './ActiveBomb';
 export * from './ActiveDiscard';
 export * from './ActivePeek';
 export * from './ActiveUndo';
