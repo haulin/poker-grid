@@ -14,12 +14,14 @@
 - May-11: count unused actives, high score, scrolling, transparent actives, 27h
 - May-12: menu screen, Quicksand font, many design tweaks, 1230 lines, 29h
 - May-13: bomb active, actives restyled, running score, radial backgrounds, 30h
+- May-14: added sounds, 32h
 
 # ToDo:
 
 - high priority
   - games played counter
   - remove header
+  - sound toggle
 - medium priority
   - payouts quick view
   - pick active
@@ -29,7 +31,6 @@
   - achievements
   - share button
   - stats (games played, actives used, last 10 scores, hands stats)
-  - sound
 - bonus
   - reset progress
   - view board doesn't hide buttons

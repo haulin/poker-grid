@@ -13,7 +13,7 @@ import {
   ActiveUndo,
   activeUndoReducer,
 } from './components';
-import { deepCopy, generateBoard, generateDeck, shuffleDeck } from '.';
+import { deepCopy, generateBoard, generateDeck, shuffleDeck, sounds } from '.';
 
 export interface GameState {
   actives: {
@@ -94,6 +94,7 @@ function getInitialState(): GameState {
 }
 
 const initialState = getInitialState();
+sounds.gameStart.play();
 
 function coreReducer(state: GameState, action: UpdateAction) {
   switch (action.type) {
@@ -101,24 +102,31 @@ function coreReducer(state: GameState, action: UpdateAction) {
       if (state.board[action.index]) return state;
       const newState = deepCopy(state);
       newState.board[action.index] = newState.deck.shift() || '';
+      sounds.keyPress.play();
       newState.isGameOver = newState.board.every((tile) => tile !== '');
+      if (!state.isGameOver && newState.isGameOver) {
+        sounds.gameOver.play();
+      }
       newState.nextCardsVisible = Math.max(1, newState.nextCardsVisible - 1);
       return newState;
     }
     case 'finish-game': {
       state.isGameInProgress = false;
       state.screen = 'menu';
+      sounds.gameStart.play();
       return state;
     }
     case 'new-game': {
       const newState: GameState = getInitialState();
       newState.screen = 'game';
       newState.isGameInProgress = true;
+      sounds.shuffle.play();
       return newState;
     }
     case 'screen': {
       const newState = deepCopy(state);
       newState.screen = action.screen;
+      sounds.paperSlide.play();
       return newState;
     }
     default:
@@ -130,7 +138,7 @@ export function useGameState() {
   const [state, update] = useReducer((state: GameState, action: UpdateAction) => {
     let newState = deepCopy(state);
     if (!state.exclusiveReducer || state.exclusiveReducer === 'undo') {
-      newState = activeUndoReducer(state, action);
+      newState = activeUndoReducer(newState, action);
     }
     if (!state.exclusiveReducer || state.exclusiveReducer === 'core') {
       newState = coreReducer(newState, action);

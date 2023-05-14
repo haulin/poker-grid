@@ -1,5 +1,5 @@
 import { ReactComponent as Discard } from '../assets/active-discard.svg';
-import { deepCopy, GameState, StateProps, UpdateAction } from '..';
+import { deepCopy, GameState, StateProps, UpdateAction, sounds } from '..';
 
 export type ActionActiveDiscard = {
   type: 'active-discard';
@@ -15,6 +15,7 @@ export function activeDiscardReducer(state: GameState, action: UpdateAction) {
       const newState = deepCopy(state);
       newState.deck.shift();
       newState.actives.discard.usesLeft -= 1;
+      sounds.discard.play();
       return newState;
     }
     default:

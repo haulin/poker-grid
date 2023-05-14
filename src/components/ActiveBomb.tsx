@@ -1,5 +1,5 @@
 import { ReactComponent as Bomb } from '../assets/active-bomb.svg';
-import { deepCopy, GameState, StateProps, UpdateAction } from '..';
+import { deepCopy, GameState, StateProps, UpdateAction, sounds } from '..';
 
 export type ActionActiveBomb = {
   type: 'active-bomb';
@@ -25,6 +25,7 @@ export function activeBombReducer(state: GameState, action: UpdateAction) {
       newState.actives.bomb.isEngaged = false;
       newState.actives.bomb.usesLeft -= 1;
       newState.exclusiveReducer = '';
+      sounds.bomb.play();
       return newState;
     }
     default:

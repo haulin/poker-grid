@@ -1,5 +1,5 @@
 import { ReactComponent as Undo } from '../assets/active-undo.svg';
-import { deepCopy, GameState, StateProps, UpdateAction } from '..';
+import { deepCopy, GameState, StateProps, UpdateAction, sounds } from '..';
 
 export type ActionActiveUndo = {
   type: 'active-undo';
@@ -17,6 +17,7 @@ export function activeUndoReducer(state: GameState, action: UpdateAction) {
       const newState = state.actives.undo.previousState;
       newState.actives.undo.usesLeft -= 1;
       newState.screen = state.screen;
+      sounds.undo.play();
       return newState;
     }
     case 'new-game':

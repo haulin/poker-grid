@@ -43,7 +43,7 @@ export function App() {
         >
           Back to game
         </button>
-        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.7</span>
+        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.8</span>
       </header>
       <div hidden={state.screen !== 'menu'}>
         <MenuScreen {...state} />

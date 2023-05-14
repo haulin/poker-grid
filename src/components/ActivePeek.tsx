@@ -1,5 +1,5 @@
 import { ReactComponent as Peek } from '../assets/active-peek.svg';
-import { deepCopy, GameState, StateProps, UpdateAction } from '..';
+import { deepCopy, GameState, StateProps, UpdateAction, sounds } from '..';
 
 export type ActionActivePeek = {
   type: 'active-peek';
@@ -15,6 +15,7 @@ export function activePeekReducer(state: GameState, action: UpdateAction) {
       const newState = deepCopy(state);
       newState.actives.peek.usesLeft -= 1;
       newState.nextCardsVisible = 5;
+      sounds.peek.play();
       return newState;
     }
     default:
