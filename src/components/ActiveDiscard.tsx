@@ -10,7 +10,6 @@ export type ActiveDiscard = {
 };
 
 export function activeDiscardReducer(state: GameState, action: UpdateAction) {
-  if (state.skipCoreReducer) return state;
   switch (action.type) {
     case 'active-discard': {
       const newState = deepCopy(state);

@@ -10,7 +10,6 @@ export type ActivePeek = {
 };
 
 export function activePeekReducer(state: GameState, action: UpdateAction) {
-  if (state.skipCoreReducer) return state;
   switch (action.type) {
     case 'active-peek': {
       const newState = deepCopy(state);

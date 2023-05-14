@@ -19,6 +19,7 @@
 
 - high priority
   - games played counter
+  - remove header
 - medium priority
   - payouts quick view
   - pick active
@@ -26,6 +27,8 @@
 - low priority
   - lock orientation
   - achievements
+  - share button
+  - stats (games played, actives used, last 10 scores, hands stats)
   - sound
 - bonus
   - reset progress
@@ -36,3 +39,7 @@
   - haptics
   - ml translations
   - animations
+  - challenges
+  - rate game
+  - online leaderboards
+  - monetization

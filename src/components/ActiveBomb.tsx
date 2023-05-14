@@ -15,7 +15,7 @@ export function activeBombReducer(state: GameState, action: UpdateAction) {
     case 'active-bomb': {
       const newState = deepCopy(state);
       newState.actives.bomb.isEngaged = !state.actives.bomb.isEngaged;
-      newState.skipCoreReducer = !state.skipCoreReducer;
+      newState.exclusiveReducer = state.exclusiveReducer ? '' : 'bomb';
       return newState;
     }
     case 'board-click': {
@@ -24,7 +24,7 @@ export function activeBombReducer(state: GameState, action: UpdateAction) {
       newState.board[action.index] = '';
       newState.actives.bomb.isEngaged = false;
       newState.actives.bomb.usesLeft -= 1;
-      newState.skipCoreReducer = false;
+      newState.exclusiveReducer = '';
       return newState;
     }
     default:

@@ -52,7 +52,7 @@ export function App() {
         <div className="status-bar">
           <NextCards {...state} />
           <div className="status-bar__scores">
-            <b>Score: {totalScore}</b>
+            <b className="highlight">Score: {totalScore}</b>
             <small>High score: {highScore}</small>
           </div>
         </div>

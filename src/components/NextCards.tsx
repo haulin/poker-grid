@@ -25,7 +25,7 @@ export function NextCards({ deck, nextCardsVisible, update }: StateProps) {
           <Fragment key={index}>
             {index === 0 && (
               <button
-                className="action-button card"
+                className="action-button card no-shadow"
                 onClick={() => update({ type: 'screen', screen: 'deck' })}
               >
                 <Card card={card} className="card--no-border" />

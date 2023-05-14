@@ -29,7 +29,7 @@ export interface GameState {
   nextCardsVisible: number;
   seed: string;
   screen: 'deck' | 'game' | 'instructions' | 'menu';
-  skipCoreReducer: boolean;
+  exclusiveReducer: '' | 'core' | keyof GameState['actives'];
 }
 
 type ActionBoardClick = {
@@ -39,7 +39,7 @@ type ActionBoardClick = {
 
 type ActionFinishGame = {
   type: 'finish-game';
-}
+};
 
 type ActionNewGame = {
   type: 'new-game';
@@ -72,15 +72,15 @@ function getInitialState(): GameState {
         usesLeft: 1,
       },
       discard: {
-        usesLeft: 1
+        usesLeft: 1,
       },
       peek: {
         usesLeft: 1,
       },
       undo: {
         usesLeft: 1,
-        previousState: undefined
-      }
+        previousState: undefined,
+      },
     },
     board: generateBoard(),
     deck: shuffleDeck(generateDeck()),
@@ -89,14 +89,13 @@ function getInitialState(): GameState {
     nextCardsVisible: 1,
     seed: Math.random().toString(36).slice(2),
     screen: 'menu',
-    skipCoreReducer: false,
+    exclusiveReducer: '',
   };
 }
 
 const initialState = getInitialState();
 
 function coreReducer(state: GameState, action: UpdateAction) {
-  if (state.skipCoreReducer) return state;
   switch (action.type) {
     case 'board-click': {
       if (state.board[action.index]) return state;
@@ -128,16 +127,24 @@ function coreReducer(state: GameState, action: UpdateAction) {
 }
 
 export function useGameState() {
-  const [state, update] = useReducer(
-    (state: GameState, action: UpdateAction) => {
-      let newState = activeUndoReducer(state, action);
+  const [state, update] = useReducer((state: GameState, action: UpdateAction) => {
+    let newState = deepCopy(state);
+    if (!state.exclusiveReducer || state.exclusiveReducer === 'undo') {
+      newState = activeUndoReducer(state, action);
+    }
+    if (!state.exclusiveReducer || state.exclusiveReducer === 'core') {
       newState = coreReducer(newState, action);
+    }
+    if (!state.exclusiveReducer || state.exclusiveReducer === 'discard') {
       newState = activeDiscardReducer(newState, action);
+    }
+    if (!state.exclusiveReducer || state.exclusiveReducer === 'peek') {
       newState = activePeekReducer(newState, action);
+    }
+    if (!state.exclusiveReducer || state.exclusiveReducer === 'bomb') {
       newState = activeBombReducer(newState, action);
-      return newState;
-    },
-    initialState,
-  );
+    }
+    return newState;
+  }, initialState);
   return { ...state, update };
 }

@@ -11,7 +11,6 @@ export type ActiveUndo = {
 };
 
 export function activeUndoReducer(state: GameState, action: UpdateAction) {
-  if (state.skipCoreReducer) return state;
   switch (action.type) {
     case 'active-undo': {
       if (!state.actives.undo.previousState) return state;
