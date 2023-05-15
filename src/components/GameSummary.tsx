@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Board } from '.';
 import { ReactComponent as HighScoreNew } from '../assets/high-score-new.svg';
 import { ReactComponent as SummaryStars } from '../assets/summary-stars.svg';
-import { getScore, getSummary, highScoreGet, highScoreSet, StateProps } from '..';
+import { getScore, getSummary, StateProps, storageHighScore } from '..';
 
 function formatHand(
   hand: string,
@@ -15,14 +15,15 @@ function formatHand(
 
 export function GameSummary(state: StateProps) {
   const [gameOverView, setGameOverView] = useState(true);
-  const [highScore] = useState(highScoreGet());
+  const [highScore] = useState(storageHighScore());
   const { handCounts, totalScore } = getSummary(state);
 
   useEffect(() => {
+    if (!state.isGameOver) return;
     if (totalScore > highScore) {
-      highScoreSet(totalScore);
+      storageHighScore(totalScore);
     }
-  }, [highScore, totalScore]);
+  }, [highScore, state, totalScore]);
 
   if (!state.isGameOver) return null;
 

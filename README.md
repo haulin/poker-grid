@@ -14,16 +14,17 @@
 - May-11: count unused actives, high score, scrolling, transparent actives, 27h
 - May-12: menu screen, Quicksand font, many design tweaks, 1230 lines, 29h
 - May-13: bomb active, actives restyled, running score, radial backgrounds, 30h
-- May-14: added sounds, 32h
+- May-14: added sounds, debugging sounds, 33h
+- May-15: use howler, sound toggle, 34h
 
 # ToDo:
 
 - high priority
   - games played counter
   - remove header
-  - sound toggle
 - medium priority
   - payouts quick view
+  - remove hover on touch devices
   - pick active
   - swap active
 - low priority

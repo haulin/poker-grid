@@ -1,21 +1,7 @@
-import { StateProps } from "./useGameState";
+import { StateProps } from './useGameState';
 
 export const SUITS = ['C', 'D', 'H', 'S'];
-export const FACES = [
-  '2',
-  '3',
-  '4',
-  '5',
-  '6',
-  '7',
-  '8',
-  '9',
-  'T',
-  'J',
-  'Q',
-  'K',
-  'A',
-];
+export const FACES = ['2', '3', '4', '5', '6', '7', '8', '9', 'T', 'J', 'Q', 'K', 'A'];
 
 // TODO: not very efficient, maybe use lodash
 export const deepCopy = <T>(object: T): T => JSON.parse(JSON.stringify(object));
@@ -53,13 +39,11 @@ export function getHand(hand: string): string {
     return 'invalid';
 
   const flush = suits.every((suit) => suit === suits[0]);
-  const groups = FACES.map((face, i) => faces.filter((j) => i === j).length).sort(
-    (x, y) => y - x,
-  );
+  const groups = FACES.map((face, i) => faces.filter((j) => i === j).length).sort((x, y) => y - x);
   const shifted = faces.map((x) => (x + 1) % 13);
   const distance = Math.min(
     Math.max(...faces) - Math.min(...faces),
-    Math.max(...shifted) - Math.min(...shifted),
+    Math.max(...shifted) - Math.min(...shifted)
   );
   const straight = groups[0] === 1 && distance < 5;
   groups[0] += jokers;
@@ -107,6 +91,13 @@ function getHands(state: StateProps) {
   return handsWithActives;
 }
 
+function getInitialPokerGridData(): PokerGridData {
+  return {
+    highScore: 0,
+    isSoundOn: true,
+  };
+}
+
 function getOccurrences(array: string[]): { [key: string]: number } {
   const occurrences: { [key: string]: number } = {};
   for (const string of array) {
@@ -147,20 +138,33 @@ export function getSummary(state: StateProps) {
 
 type PokerGridData = {
   highScore: number;
+  isSoundOn: boolean;
 };
 
-export function highScoreGet() {
+export function storageHighScore(): number;
+export function storageHighScore(score: number): void;
+export function storageHighScore(score?: number) {
   const maybeData = window.localStorage.getItem('pokerGridJson');
-  if (!maybeData) return 0;
-  const data = JSON.parse(maybeData) as PokerGridData;
-  return data.highScore;
+  const data: PokerGridData = maybeData ? JSON.parse(maybeData) : getInitialPokerGridData();
+  if (score === undefined) {
+    return data.highScore;
+  } else {
+    data.highScore = score;
+    window.localStorage.setItem('pokerGridJson', JSON.stringify(data));
+  }
 }
 
-export function highScoreSet(score: number) {
+export function storageSound(): boolean;
+export function storageSound(isSoundOn: boolean): void;
+export function storageSound(isSoundOn?: boolean) {
   const maybeData = window.localStorage.getItem('pokerGridJson');
-  const data: PokerGridData = maybeData ? JSON.parse(maybeData) : { highScore: 0 };
-  data.highScore = score;
-  window.localStorage.setItem('pokerGridJson', JSON.stringify(data));
+  const data: PokerGridData = maybeData ? JSON.parse(maybeData) : getInitialPokerGridData();
+  if (isSoundOn === undefined) {
+    return data.isSoundOn;
+  } else {
+    data.isSoundOn = isSoundOn;
+    window.localStorage.setItem('pokerGridJson', JSON.stringify(data));
+  }
 }
 
 export function shuffleDeck(deck: string[]): string[] {

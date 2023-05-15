@@ -9,13 +9,13 @@ import {
   Instructions,
   NextCards,
 } from '.';
-import { getSummary, highScoreGet, useGameState } from '..';
+import { getSummary, storageHighScore, useGameState } from '..';
 import '../styles.css';
 import { MenuScreen } from './MenuScreen';
 
 export function App() {
   const state = useGameState();
-  const highScore = highScoreGet();
+  const highScore = storageHighScore();
   const { totalScore } = getSummary(state);
 
   return (

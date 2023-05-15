@@ -1,12 +1,22 @@
+import { useState } from 'react';
+import { Howler } from 'howler';
+
 import { ReactComponent as Club } from '../assets/suit-club.svg';
 import { ReactComponent as Diamond } from '../assets/suit-diamond.svg';
 import { ReactComponent as Heart } from '../assets/suit-heart.svg';
 import { ReactComponent as Spade } from '../assets/suit-spade.svg';
 import { ReactComponent as SummaryStars } from '../assets/summary-stars.svg';
-import { highScoreGet, StateProps } from '..';
+import { StateProps, storageHighScore, storageSound } from '..';
 
 export function MenuScreen(state: StateProps) {
-  const highScore = highScoreGet();
+  const [isSoundOn, setIsSoundOn] = useState(storageSound());
+  const highScore = storageHighScore();
+  Howler.volume(isSoundOn ? 1 : 0);
+
+  function toggleSound() {
+    setIsSoundOn(!isSoundOn);
+    storageSound(!isSoundOn);
+  }
 
   return (
     <div className="menu-screen container">
@@ -75,6 +85,9 @@ export function MenuScreen(state: StateProps) {
           }
         >
           Instructions
+        </button>
+        <button hidden={state.screen === 'instructions'} onClick={toggleSound}>
+          Sound: {isSoundOn ? 'on' : 'off'}
         </button>
         <h3>High score: {highScore}</h3>
       </div>

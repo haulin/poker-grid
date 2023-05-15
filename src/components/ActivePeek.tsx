@@ -15,7 +15,7 @@ export function activePeekReducer(state: GameState, action: UpdateAction) {
       const newState = deepCopy(state);
       newState.actives.peek.usesLeft -= 1;
       newState.nextCardsVisible = 5;
-      sounds.peek.play();
+      sounds.gong.play();
       return newState;
     }
     default:

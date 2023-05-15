@@ -102,7 +102,7 @@ function coreReducer(state: GameState, action: UpdateAction) {
       if (state.board[action.index]) return state;
       const newState = deepCopy(state);
       newState.board[action.index] = newState.deck.shift() || '';
-      sounds.keyPress.play();
+      sounds.tap.play();
       newState.isGameOver = newState.board.every((tile) => tile !== '');
       if (!state.isGameOver && newState.isGameOver) {
         sounds.gameOver.play();
