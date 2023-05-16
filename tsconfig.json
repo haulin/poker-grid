@@ -4,6 +4,7 @@
     "esModuleInterop": true,
     "jsx": "react-jsx",
     "lib": ["dom", "esnext"],
+    "resolveJsonModule": true,
     "strict": true,
     "typeRoots": ["./src"],
     "types": ["node"]

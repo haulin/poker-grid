@@ -6,21 +6,22 @@ import { ReactComponent as Diamond } from '../assets/suit-diamond.svg';
 import { ReactComponent as Heart } from '../assets/suit-heart.svg';
 import { ReactComponent as Spade } from '../assets/suit-spade.svg';
 import { ReactComponent as SummaryStars } from '../assets/summary-stars.svg';
-import { StateProps, storageHighScore, storageSound } from '..';
+import { StateProps, storageItem } from '..';
+import packageJson from '../../package.json';
 
 export function MenuScreen(state: StateProps) {
-  const [isSoundOn, setIsSoundOn] = useState(storageSound());
-  const highScore = storageHighScore();
+  const [isSoundOn, setIsSoundOn] = useState(storageItem('isSoundOn'));
+  const highScore = storageItem('highScore');
   Howler.volume(isSoundOn ? 1 : 0);
 
   function toggleSound() {
     setIsSoundOn(!isSoundOn);
-    storageSound(!isSoundOn);
+    storageItem('isSoundOn', !isSoundOn);
   }
 
   return (
-    <div className="menu-screen container">
-      <SummaryStars style={{ height: '6em', marginTop: '2em', width: 'auto' }} />
+    <div className="menu-screen container appear">
+      <SummaryStars className="menu-screen__stars" />
       <div className="menu-screen__title">
         <div className="card">
           <span>P</span>
@@ -56,7 +57,11 @@ export function MenuScreen(state: StateProps) {
           <span>D</span>
         </div>
       </div>
-      <div className="menu-screen__buttons">
+      <div className="menu-screen__version">v{packageJson.version}</div>
+      <div
+        className="menu-screen__buttons appear"
+        style={{ '--delay': '0.1s' } as React.CSSProperties}
+      >
         <button
           hidden={!state.isGameInProgress}
           onClick={() => {
@@ -69,6 +74,7 @@ export function MenuScreen(state: StateProps) {
           Back to game
         </button>
         <button
+          className="primary"
           onClick={() => {
             state.update({ type: 'new-game' });
           }}

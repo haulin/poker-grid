@@ -9,46 +9,46 @@ import {
   Instructions,
   NextCards,
 } from '.';
-import { getSummary, storageHighScore, useGameState } from '..';
+import { getSummary, storageItem, useGameState } from '..';
 import '../styles.css';
 import { MenuScreen } from './MenuScreen';
 
 export function App() {
   const state = useGameState();
-  const highScore = storageHighScore();
+  const highScore = storageItem('highScore');
   const { totalScore } = getSummary(state);
 
   return (
     <>
-      <header>
-        <button
-          hidden={state.screen === 'menu'}
-          onClick={() =>
-            state.update({
-              type: 'screen',
-              screen: 'menu',
-            })
-          }
-        >
-          Menu
-        </button>
-        <button
-          hidden={state.screen === 'game' || state.screen === 'menu' || !state.isGameInProgress}
-          onClick={() => {
-            state.update({
-              type: 'screen',
-              screen: 'game',
-            });
-          }}
-        >
-          Back to game
-        </button>
-        <span style={{ position: 'absolute', right: 10, top: 5 }}>v0.8</span>
+      <header hidden={state.screen === 'menu'}>
+        <div className="button-row container">
+          <button
+            onClick={() =>
+              state.update({
+                type: 'screen',
+                screen: 'menu',
+              })
+            }
+          >
+            Menu
+          </button>
+          <button
+            hidden={state.screen === 'game' || state.screen === 'menu' || !state.isGameInProgress}
+            onClick={() => {
+              state.update({
+                type: 'screen',
+                screen: 'game',
+              });
+            }}
+          >
+            Back to game
+          </button>
+        </div>
       </header>
       <div hidden={state.screen !== 'menu'}>
         <MenuScreen {...state} />
       </div>
-      <div className="table" hidden={state.screen !== 'game' || state.isGameOver}>
+      <div className="table appear" hidden={state.screen !== 'game' || state.isGameOver}>
         <div className="status-bar">
           <NextCards {...state} />
           <div className="status-bar__scores">

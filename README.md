@@ -15,33 +15,30 @@
 - May-12: menu screen, Quicksand font, many design tweaks, 1230 lines, 29h
 - May-13: bomb active, actives restyled, running score, radial backgrounds, 30h
 - May-14: added sounds, debugging sounds, 33h
-- May-15: use howler, sound toggle, 34h
+- May-15: use howler, sound toggle, 1420 lines, 34h
+- May-16: games played counter, primary buttons, menu style update, appear animation, remove focus, version in app, 36h
 
 # ToDo:
 
 - high priority
-  - games played counter
-  - remove header
-- medium priority
-  - payouts quick view
-  - remove hover on touch devices
   - pick active
+- medium priority
+  - support screen (credits, discord, rate, share, donate)
+  - payouts quick view
   - swap active
 - low priority
   - lock orientation
   - achievements
-  - share button
   - stats (games played, actives used, last 10 scores, hands stats)
 - bonus
   - reset progress
   - view board doesn't hide buttons
   - light mode
   - horizontal orientation
-  - credits + discord channel
   - haptics
   - ml translations
-  - animations
+  - more animations
   - challenges
-  - rate game
   - online leaderboards
   - monetization
+  - keyboard controls

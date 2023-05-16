@@ -10,9 +10,7 @@ export function Board({ board, update }: StateProps) {
         const score = getScore(hand);
         return (
           <div className="board__score" key={index}>
-            <span style={{ fontSize: '2em' }} title={hand}>
-              {score || ''}
-            </span>
+            <span title={hand}>{score || ''}</span>
           </div>
         );
       })}

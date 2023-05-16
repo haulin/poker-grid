@@ -93,6 +93,7 @@ function getHands(state: StateProps) {
 
 function getInitialPokerGridData(): PokerGridData {
   return {
+    gamesPlayed: 0,
     highScore: 0,
     isSoundOn: true,
   };
@@ -137,32 +138,21 @@ export function getSummary(state: StateProps) {
 }
 
 type PokerGridData = {
+  gamesPlayed: number;
   highScore: number;
   isSoundOn: boolean;
 };
 
-export function storageHighScore(): number;
-export function storageHighScore(score: number): void;
-export function storageHighScore(score?: number) {
+export function storageItem<T extends keyof PokerGridData>(item: T): PokerGridData[T];
+export function storageItem<T extends keyof PokerGridData>(item: T, value: PokerGridData[T]): void;
+export function storageItem<T extends keyof PokerGridData>(item: T, value?: PokerGridData[T]) {
   const maybeData = window.localStorage.getItem('pokerGridJson');
-  const data: PokerGridData = maybeData ? JSON.parse(maybeData) : getInitialPokerGridData();
-  if (score === undefined) {
-    return data.highScore;
+  const initialData = getInitialPokerGridData();
+  const data: PokerGridData = maybeData ? JSON.parse(maybeData) : initialData;
+  if (value === undefined) {
+    return data[item] ?? initialData[item];
   } else {
-    data.highScore = score;
-    window.localStorage.setItem('pokerGridJson', JSON.stringify(data));
-  }
-}
-
-export function storageSound(): boolean;
-export function storageSound(isSoundOn: boolean): void;
-export function storageSound(isSoundOn?: boolean) {
-  const maybeData = window.localStorage.getItem('pokerGridJson');
-  const data: PokerGridData = maybeData ? JSON.parse(maybeData) : getInitialPokerGridData();
-  if (isSoundOn === undefined) {
-    return data.isSoundOn;
-  } else {
-    data.isSoundOn = isSoundOn;
+    data[item] = value;
     window.localStorage.setItem('pokerGridJson', JSON.stringify(data));
   }
 }

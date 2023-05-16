@@ -9,7 +9,7 @@ export function Deck({ deck }: { deck: string[] }): JSX.Element {
   });
 
   return (
-    <div className="deck container">
+    <div className="deck container appear">
       <h2>{deck.length} cards left in deck (not in order):</h2>
       <ul className="deck">
         {sortedDeck.map((card, index) => (

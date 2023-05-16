@@ -1,6 +1,6 @@
 export function Instructions() {
   return (
-    <div className="container instructions">
+    <div className="container instructions appear">
       <h1>How to play Poker Grid</h1>
       <p>
         Poker Grid is a solitaire poker game. Your goal is to place 25 cards, on a 5x5 grid, making
