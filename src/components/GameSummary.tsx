@@ -44,7 +44,7 @@ export function GameSummary(state: StateProps) {
           {Object.keys(handCounts).map((hand) => (
             <div className="summary__score-row" key={hand}>
               {formatHand(hand, handCounts)}
-              <b className="highlight">{getScore(hand) * handCounts[hand]}</b>
+              <b>{getScore(hand) * handCounts[hand]}</b>
             </div>
           ))}
         </div>

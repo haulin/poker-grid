@@ -17,28 +17,43 @@
 - May-14: added sounds, debugging sounds, 33h
 - May-15: use howler, sound toggle, 1420 lines, 34h
 - May-16: games played counter, primary buttons, menu style update, appear animation, remove focus, version in app, 36h
+- May-17: dealing with Google Play, card bounce animation, first playtest, 37h
+- May-18: setting up Google Play test, fixing layout on old Androids, 40h
 
 # ToDo:
 
 - high priority
+  - fix flexbox gap
   - pick active
+  - actives explainers
+  - card borders opaque
 - medium priority
-  - support screen (credits, discord, rate, share, donate)
+  - support screen (credits, discord, rate, share, donate, changelog)
   - payouts quick view
   - swap active
 - low priority
   - lock orientation
   - achievements
-  - stats (games played, actives used, last 10 scores, hands stats)
+  - stats (average score, actives used, last 10 scores, hands stats)
 - bonus
+  - shuffle mode
   - reset progress
   - view board doesn't hide buttons
   - light mode
   - horizontal orientation
   - haptics
   - ml translations
+  - new game confirmation
+  - volume levels
   - more animations
   - challenges
   - online leaderboards
   - monetization
   - keyboard controls
+
+# feedback:
+
+- esc to go back page
+- instructions in game screen
+- restart game in game screen
+- buttons opaque

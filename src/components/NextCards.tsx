@@ -11,7 +11,7 @@ export function NextCards({ deck, nextCardsVisible, update }: StateProps) {
           className="action-button card card--deck"
           onClick={() => update({ type: 'screen', screen: 'deck' })}
         >
-          <Card card={deck[0]} className="card--no-border" />
+          <Card card={deck[0]} className="card--no-border" key={deck[0]} />
         </button>
       </div>
     );

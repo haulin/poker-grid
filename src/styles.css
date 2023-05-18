@@ -185,14 +185,18 @@ h3 {
 }
 
 .button-row {
-  display: inline-flex;
-  gap: 1em;
-  margin: 1em 0;
+  margin-bottom: 1em;
+  margin-top: 1em;
+}
+.button-row > * + * {
+  margin-left: 1em;
 }
 
 .container {
+  display: block;
   max-width: 30rem;
-  margin-inline: auto;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .highlight {
@@ -205,15 +209,15 @@ h3 {
 
 .actives {
   display: flex;
-  gap: 1em;
   justify-content: center;
-  margin-top: 1.5em;
+  margin-top: 1em;
 }
 .active {
   align-items: center;
   display: flex;
   flex-direction: column;
   justify-content: center;
+  margin: 0.5em;
   padding: 0.3em;
   width: 5em;
 }
@@ -296,8 +300,20 @@ h3 {
   background-color: var(--shade-2);
 }
 
+@keyframes bounce {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
 .card {
   align-items: center;
+  animation: 0.2s ease forwards appear, 0.2s linear forwards bounce;
   background-image: linear-gradient(to bottom, var(--card-bg-1), var(--card-bg-2));
   border: 1px solid var(--border-medium);
   border-bottom-color: var(--border-light);
@@ -305,7 +321,6 @@ h3 {
   border-radius: 0.5em;
   display: flex;
   flex-direction: column;
-  gap: 0.75em;
   height: var(--card-height);
   justify-content: center;
   padding: 0;
@@ -352,6 +367,7 @@ h3 {
   display: grid;
   font-size: 3em;
   line-height: 0.6;
+  margin-top: 0.25em;
 }
 .card__suit svg {
   grid-column: 1;
@@ -386,7 +402,6 @@ header {
   background: var(--shade-1);
   display: flex;
   font-size: 1.2em;
-  gap: 1em;
 }
 header > div {
   width: 33rem;
@@ -401,8 +416,7 @@ header > div {
 }
 .high-score h2 {
   color: white;
-  font-weight: bold;
-  text-shadow: 0 0 1em var(--high-score-shadow), 0 0 1em var(--high-score-shadow);
+  text-shadow: 0.1em 0.1em var(--high-score-shadow);
 }
 .high-score svg {
   height: 6em;
@@ -433,10 +447,12 @@ header > div {
 .menu-screen__buttons {
   display: flex;
   flex-direction: column;
-  font-size: 1.5em;
-  gap: 1.5em;
-  margin: 1.5em auto 0;
+  font-size: 1.6em;
+  margin: auto;
   width: 10em;
+}
+.menu-screen__buttons > * {
+  margin-top: 1.4em;
 }
 .menu-screen__stars {
   height: 6em;
@@ -463,8 +479,8 @@ header > div {
 }
 .menu-screen__title {
   background-image: radial-gradient(closest-side, #fff2, transparent);
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid: 1fr 1fr / repeat(5, 1fr);
   gap: 1em;
   justify-items: center;
   margin: 2em auto;
@@ -497,7 +513,6 @@ header > div {
 .status-bar {
   align-items: flex-start;
   display: flex;
-  gap: 0.5em;
   margin: 1em 0 -1.5em;
   position: relative;
   width: 28.5em;
@@ -515,7 +530,7 @@ header > div {
   align-self: center;
   font-size: 1.5em;
   height: calc(100% - 2em);
-  margin-block: 3em;
+  margin-top: 3em;
   position: relative;
   text-align: center;
   width: calc(100% - 2em);
