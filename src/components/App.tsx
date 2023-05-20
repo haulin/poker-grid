@@ -8,6 +8,7 @@ import {
   GameSummary,
   Instructions,
   NextCards,
+  Support,
 } from '.';
 import { getSummary, storageItem, useGameState } from '..';
 import '../styles.css';
@@ -72,6 +73,9 @@ export function App() {
       </div>
       <div hidden={state.screen !== 'game'}>
         <GameSummary key={state.seed} {...state} />
+      </div>
+      <div hidden={state.screen !== 'support'}>
+        <Support />
       </div>
     </>
   );

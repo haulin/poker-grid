@@ -9,3 +9,4 @@ export * from './Deck';
 export * from './GameSummary';
 export * from './Instructions';
 export * from './NextCards';
+export * from './Support';

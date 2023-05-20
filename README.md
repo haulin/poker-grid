@@ -19,16 +19,17 @@
 - May-16: games played counter, primary buttons, menu style update, appear animation, remove focus, version in app, 36h
 - May-17: dealing with Google Play, card bounce animation, first playtest, 37h
 - May-18: setting up Google Play test, fixing layout on old Androids, 40h
+- May-19: fix undo, buttons styling, 41h
+- May-20: summary touch up, support screen, 42h
 
 # ToDo:
 
 - high priority
-  - fix flexbox gap
+  - card borders opaque
+  - implement rate & share
+- medium priority
   - pick active
   - actives explainers
-  - card borders opaque
-- medium priority
-  - support screen (credits, discord, rate, share, donate, changelog)
   - payouts quick view
   - swap active
 - low priority
@@ -36,9 +37,11 @@
   - achievements
   - stats (average score, actives used, last 10 scores, hands stats)
 - bonus
+  - donate
+  - changelog
   - shuffle mode
   - reset progress
-  - view board doesn't hide buttons
+  - view board doesn't hide buttons & plays a screen sound
   - light mode
   - horizontal orientation
   - haptics
@@ -47,7 +50,7 @@
   - volume levels
   - more animations
   - challenges
-  - online leaderboards
+  - google play games leaderboards
   - monetization
   - keyboard controls
 

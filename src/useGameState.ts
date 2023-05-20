@@ -28,7 +28,7 @@ export interface GameState {
   isGameInProgress: boolean;
   nextCardsVisible: number;
   seed: string;
-  screen: 'deck' | 'game' | 'instructions' | 'menu';
+  screen: 'deck' | 'game' | 'instructions' | 'menu' | 'support';
   exclusiveReducer: '' | 'core' | keyof GameState['actives'];
 }
 

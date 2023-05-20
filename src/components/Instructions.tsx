@@ -15,7 +15,7 @@ export function Instructions() {
         You have a few active abilities at your disposal to use once during the game. Unused actives
         will raise your total score slightly. Try to get the highest total score you can!
       </p>
-      <h2>Scoring the hands</h2>
+      <h2 className="section-title">Scoring the hands</h2>
       <p>
         Scoring the game is a bit different than in regular poker as the probablities of the hands
         are different. For example a Flush is a lot easier to get in Poker Grid, so the scores have
@@ -31,13 +31,11 @@ export function Instructions() {
         <li>Two Pairs - 2</li>
         <li>One Pair - 1</li>
       </ul>
-      <h2>Prior art</h2>
+      <h2 className="section-title">Prior art</h2>
       <p>
         The basis of the game is known also as Poker Squares / Poker Solitaire / Poker Patience and
         many similar variants exist. The origins date to at least the autumn of 1908.
       </p>
-      <h2>Attribution</h2>
-      <p>Some icons were used from game-icons.net and svgrepo.com.</p>
     </div>
   );
 }

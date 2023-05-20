@@ -24,6 +24,12 @@ export function activeUndoReducer(state: GameState, action: UpdateAction) {
       return state;
     case 'screen':
       return state;
+    case 'board-click': {
+      if (state.board[action.index]) return state;
+      const newState = deepCopy(state);
+      newState.actives.undo.previousState = state;
+      return newState;
+    }
     default: {
       const newState = deepCopy(state);
       newState.actives.undo.previousState = state;

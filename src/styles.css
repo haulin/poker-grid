@@ -5,12 +5,6 @@
   box-sizing: border-box;
 }
 :root {
-  --delay: 0s;
-  --shade-1: #fff1;
-  --shade-2: #fff2;
-  --shade-3: #fff3;
-  --shade-4: #fff5;
-  --shade-5: #fff9;
   --body-bg-1: #315d;
   --body-bg-2: #111d;
   --border-light: #fff3;
@@ -22,13 +16,24 @@
   --card-red-color: #d02;
   --card-height: 7em;
   --card-width: 5em;
+  --darken-background: #0003;
+  --delay: 0s;
   --high-score-shadow: black;
-  --highlight-background: #ff64;
+  --highlight-background: #7659;
   --highlight-border: #ca2;
-  --highlight-medium: #ff99;
+  --highlight-medium: #ffaa;
   --highlight-text: #ca2;
   --icon-shine: #fff3;
+  --primary-light: #996c;
+  --primary-dark: #660c;
+  --shade-0: #ffffff0a;
+  --shade-1: #fff1;
+  --shade-2: #fff2;
+  --shade-3: #fff3;
+  --shade-4: #fff5;
+  --shade-5: #fff9;
   --text-color: #fffb;
+  --text-color-heavy: white;
 
   background-color: var(--body-bg-1);
   background-image: radial-gradient(
@@ -37,7 +42,7 @@
       var(--body-bg-1),
       var(--body-bg-2)
     ),
-    url(assets/bg-pattern.png);
+    url(./assets/bg-pattern.png);
   color: var(--text-color);
   color-scheme: only dark;
   font-family: Quicksand, Inter, Avenir, Helvetica, Arial, sans-serif;
@@ -101,7 +106,9 @@ body {
   width: 100%;
 }
 
-button {
+button,
+.button {
+  backdrop-filter: blur(0.3em);
   background-clip: padding-box;
   background-color: var(--shade-2);
   border-radius: 0.5em;
@@ -109,13 +116,16 @@ button {
   box-shadow: 0 -0.15em var(--shade-4);
   color: inherit;
   cursor: pointer;
+  display: inline-block;
   font-size: 1em;
   font-weight: 700;
   font-family: inherit;
   padding: 0.6em 1.2em;
+  text-decoration: none;
   transition: border-color 0.25s;
 }
-button:not(:disabled):hover {
+button:not(:disabled):hover,
+.button:not(:disabled):hover {
   border-color: var(--highlight-border);
 }
 button:focus,
@@ -132,7 +142,17 @@ button.no-shadow {
 }
 button.primary {
   background-color: var(--highlight-background);
+  background-image: linear-gradient(
+    -60deg,
+    var(--highlight-background),
+    var(--primary-light),
+    var(--highlight-background),
+    var(--primary-light)
+  );
+  border-color: var(--primary-dark);
   box-shadow: 0 -0.15em var(--highlight-medium);
+  color: var(--text-color-heavy);
+  text-shadow: 0.1em 0.1em var(--primary-dark);
 }
 
 h1,
@@ -141,6 +161,14 @@ h3 {
   font-weight: 500;
 }
 
+@keyframes appear {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
 .appear {
   animation-delay: 0s !important;
 }
@@ -175,14 +203,6 @@ h3 {
 .appear > :nth-child(9) {
   animation-delay: calc(0.45s + var(--delay));
 }
-@keyframes appear {
-  0% {
-    opacity: 0;
-  }
-  100% {
-    opacity: 1;
-  }
-}
 
 .button-row {
   margin-bottom: 1em;
@@ -203,6 +223,12 @@ h3 {
   color: var(--highlight-text);
 }
 
+.section-title {
+  line-height: 1.2;
+  margin-bottom: 0;
+  margin-top: 1.5em;
+}
+
 /* @media (prefers-color-scheme: light) {
  TODO light mode
 } */
@@ -211,6 +237,15 @@ h3 {
   display: flex;
   justify-content: center;
   margin-top: 1em;
+}
+
+@keyframes glow {
+  0% {
+    background-color: transparent;
+  }
+  100% {
+    background-color: var(--highlight-background);
+  }
 }
 .active {
   align-items: center;
@@ -224,14 +259,6 @@ h3 {
 .active--engaged {
   background-color: var(--highlight-background);
   animation: 0.5s ease-out infinite alternate glow;
-}
-@keyframes glow {
-  0% {
-    background-color: transparent;
-  }
-  100% {
-    background-color: var(--highlight-background);
-  }
 }
 .active svg {
   display: block;
@@ -415,7 +442,7 @@ header > div {
   grid-area: 1 / 1;
 }
 .high-score h2 {
-  color: white;
+  color: var(--text-color-heavy);
   text-shadow: 0.1em 0.1em var(--high-score-shadow);
 }
 .high-score svg {
@@ -436,7 +463,7 @@ header > div {
 .menu-screen::before {
   background-image: repeating-conic-gradient(
     at center 25em,
-    #ffffff0a 0 6deg,
+    var(--shade-0) 0 6deg,
     transparent 6deg 12deg
   );
   content: '';
@@ -478,7 +505,7 @@ header > div {
   fill: var(--card-red-color);
 }
 .menu-screen__title {
-  background-image: radial-gradient(closest-side, #fff2, transparent);
+  background-image: radial-gradient(closest-side, var(--shade-2), transparent);
   display: grid;
   grid: 1fr 1fr / repeat(5, 1fr);
   gap: 1em;
@@ -549,13 +576,17 @@ header > div {
   width: auto;
 }
 .summary__scores {
-  border-bottom: 1px solid var(--border-light);
   border-top: 1px solid var(--border-light);
-  padding: 1.5em 4em;
+  padding: 1.5em 4em 0;
 }
 .summary__score-row {
   display: flex;
   justify-content: space-between;
+}
+.summary__total-score {
+  background: var(--darken-background);
+  border: 3px double var(--shade-4);
+  border-radius: 3rem;
 }
 
 .table {

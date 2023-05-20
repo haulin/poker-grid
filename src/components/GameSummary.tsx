@@ -48,7 +48,7 @@ export function GameSummary(state: StateProps) {
             </div>
           ))}
         </div>
-        <h1>
+        <h1 className="summary__total-score">
           Total score: <b className="highlight">{totalScore}</b>
         </h1>
         <div className="high-score">
@@ -60,7 +60,7 @@ export function GameSummary(state: StateProps) {
             </>
           )}
         </div>
-        <div style={{ marginBottom: '1em' }}>Games played: {gamesPlayed + 1}</div>
+        <div style={{ marginBottom: '2em' }}>Games played: {gamesPlayed + 1}</div>
       </div>
       <div className="appear" hidden={gameOverView} style={{ fontSize: '1rem' }}>
         <Board {...state} />

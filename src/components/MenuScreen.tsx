@@ -82,7 +82,6 @@ export function MenuScreen(state: StateProps) {
           New game
         </button>
         <button
-          hidden={state.screen === 'instructions'}
           onClick={() =>
             state.update({
               type: 'screen',
@@ -94,6 +93,16 @@ export function MenuScreen(state: StateProps) {
         </button>
         <button hidden={state.screen === 'instructions'} onClick={toggleSound}>
           Sound: {isSoundOn ? 'on' : 'off'}
+        </button>
+        <button
+          onClick={() =>
+            state.update({
+              type: 'screen',
+              screen: 'support',
+            })
+          }
+        >
+          Support
         </button>
         <h3>High score: {highScore}</h3>
       </div>
