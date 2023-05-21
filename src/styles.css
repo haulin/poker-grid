@@ -7,9 +7,10 @@
 :root {
   --body-bg-1: #315d;
   --body-bg-2: #111d;
-  --border-light: #fff3;
-  --border-medium: #fff5;
-  --border-heavy: #fff9;
+  --border-light: #444;
+  --border-medium: #666;
+  --border-heavy: #aaa;
+  --button-background: #6479;
   --card-bg-1: #222;
   --card-bg-2: #000;
   --card-black-color: #777;
@@ -19,12 +20,12 @@
   --darken-background: #0003;
   --delay: 0s;
   --high-score-shadow: black;
-  --highlight-background: #7659;
+  --highlight-background: #8836;
   --highlight-border: #ca2;
   --highlight-medium: #ffaa;
   --highlight-text: #ca2;
   --icon-shine: #fff3;
-  --primary-light: #996c;
+  --primary-light: #ee96;
   --primary-dark: #660c;
   --shade-0: #ffffff0a;
   --shade-1: #fff1;
@@ -108,9 +109,8 @@ body {
 
 button,
 .button {
-  backdrop-filter: blur(0.3em);
   background-clip: padding-box;
-  background-color: var(--shade-2);
+  background-color: var(--button-background);
   border-radius: 0.5em;
   border: 1px solid transparent;
   box-shadow: 0 -0.15em var(--shade-4);
@@ -202,6 +202,15 @@ h3 {
 }
 .appear > :nth-child(9) {
   animation-delay: calc(0.45s + var(--delay));
+}
+.appear > :nth-child(10) {
+  animation-delay: calc(0.5s + var(--delay));
+}
+.appear > :nth-child(11) {
+  animation-delay: calc(0.55s + var(--delay));
+}
+.appear > :nth-child(12) {
+  animation-delay: calc(0.6s + var(--delay));
 }
 
 .button-row {
@@ -317,6 +326,7 @@ h3 {
 .board__tile {
   align-items: center;
   background-color: var(--shade-1);
+  background-image: radial-gradient(circle farthest-corner, var(--shade-1), transparent);
   border-radius: 0.75em;
   display: flex;
   height: calc(var(--card-height) + 0.5em);
@@ -479,7 +489,7 @@ header > div {
   width: 10em;
 }
 .menu-screen__buttons > * {
-  margin-top: 1.4em;
+  margin-top: 1em;
 }
 .menu-screen__stars {
   height: 6em;

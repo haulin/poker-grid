@@ -21,17 +21,17 @@
 - May-18: setting up Google Play test, fixing layout on old Androids, 40h
 - May-19: fix undo, buttons styling, 41h
 - May-20: summary touch up, support screen, 42h
+- May-21: implement share, card borders opaque, fix long appear, minor color tweaks, 44h
 
 # ToDo:
 
 - high priority
-  - card borders opaque
-  - implement rate & share
+  - new screenshots
 - medium priority
   - pick active
-  - actives explainers
-  - payouts quick view
   - swap active
+  - payouts quick view
+  - actives explainers
 - low priority
   - lock orientation
   - achievements

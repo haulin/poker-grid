@@ -89,7 +89,7 @@ export function MenuScreen(state: StateProps) {
             })
           }
         >
-          Instructions
+          How to play
         </button>
         <button hidden={state.screen === 'instructions'} onClick={toggleSound}>
           Sound: {isSoundOn ? 'on' : 'off'}
@@ -104,7 +104,7 @@ export function MenuScreen(state: StateProps) {
         >
           Support
         </button>
-        <h3>High score: {highScore}</h3>
+        <h3 className="section-title">High score: {highScore}</h3>
       </div>
     </div>
   );
