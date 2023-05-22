@@ -22,26 +22,28 @@
 - May-19: fix undo, buttons styling, 41h
 - May-20: summary touch up, support screen, 42h
 - May-21: implement share, card borders opaque, fix long appear, minor color tweaks, 44h
+- May-22: larger new/continue game buttons, updated logo, updated screenshots, v1.0, 45h
 
 # ToDo:
 
 - high priority
-  - new screenshots
-- medium priority
   - pick active
+- medium priority
+  - average score
+  - reset progress
   - swap active
   - payouts quick view
   - actives explainers
 - low priority
   - lock orientation
   - achievements
-  - stats (average score, actives used, last 10 scores, hands stats)
+  - stats (actives used, last 10 scores, hands stats)
 - bonus
   - donate
   - changelog
   - shuffle mode
-  - reset progress
   - view board doesn't hide buttons & plays a screen sound
+  - random seed + tutorial
   - light mode
   - horizontal orientation
   - haptics
@@ -59,4 +61,3 @@
 - esc to go back page
 - instructions in game screen
 - restart game in game screen
-- buttons opaque

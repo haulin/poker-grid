@@ -1,6 +1,6 @@
 {
   "name": "grid-poker",
-  "version": "0.9.4",
+  "version": "1.0",
   "description": "",
   "keywords": [],
   "main": "src/index.tsx",

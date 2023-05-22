@@ -70,6 +70,7 @@ export function MenuScreen(state: StateProps) {
               screen: 'game',
             });
           }}
+          style={{ transform: 'scale(1.2)' }}
         >
           Back to game
         </button>
@@ -78,6 +79,7 @@ export function MenuScreen(state: StateProps) {
           onClick={() => {
             state.update({ type: 'new-game' });
           }}
+          style={{ transform: 'scale(1.2)' }}
         >
           New game
         </button>
