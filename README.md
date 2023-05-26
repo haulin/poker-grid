@@ -24,6 +24,7 @@
 - May-21: implement share, card borders opaque, fix long appear, minor color tweaks, 44h
 - May-22: larger new/continue game buttons, updated logo, updated screenshots, v1.0, 45h
 - May-23: playtest, discard fix, support for larger minimum font size, full screen, 48h
+- May-26: better full screen support, production release 50h
 
 # ToDo:
 
