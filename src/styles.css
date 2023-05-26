@@ -486,7 +486,7 @@ header > div {
   flex-direction: column;
   font-size: 1.6em;
   margin: auto;
-  width: 10em;
+  width: 12em;
 }
 .menu-screen__buttons > * {
   margin-top: 1em;

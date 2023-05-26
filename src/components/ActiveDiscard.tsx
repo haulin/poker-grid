@@ -14,6 +14,7 @@ export function activeDiscardReducer(state: GameState, action: UpdateAction) {
     case 'active-discard': {
       const newState = deepCopy(state);
       newState.deck.shift();
+      newState.nextCardsVisible = Math.max(1, newState.nextCardsVisible - 1);
       newState.actives.discard.usesLeft -= 1;
       sounds.discard.play();
       return newState;

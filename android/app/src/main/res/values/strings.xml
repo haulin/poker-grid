@@ -2,6 +2,4 @@
 <resources>
     <string name="app_name">Poker Grid</string>
     <string name="title_activity_main">Poker Grid</string>
-    <string name="package_name">com.haulin.pokergrid</string>
-    <string name="custom_url_scheme">com.haulin.pokergrid</string>
 </resources>
