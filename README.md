@@ -39,7 +39,7 @@
 - low priority
   - lock orientation
   - achievements
-  - stats (actives used, last 10 scores, hands stats)
+  - stats (actives used, last 10 scores, hands stats) - per game, overall
 - bonus
   - donate
   - changelog
@@ -54,6 +54,7 @@
   - volume levels
   - more animations
   - challenges
+  - reset local storage data
   - google play games leaderboards
   - monetization
   - keyboard controls
