@@ -54,6 +54,7 @@
   - volume levels
   - more animations
   - challenges
+  - meta-progression (can buy more upgrades)
   - reset local storage data
   - google play games leaderboards
   - monetization
