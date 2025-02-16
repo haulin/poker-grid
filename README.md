@@ -25,6 +25,7 @@
 - May-22: larger new/continue game buttons, updated logo, updated screenshots, v1.0, 45h
 - May-23: playtest, discard fix, support for larger minimum font size, full screen, 48h
 - May-26: better full screen support, production release 50h
+- 2025-Feb-16: update to Android 14
 
 # ToDo:
 
@@ -34,6 +35,7 @@
   - average score
   - reset progress
   - swap active
+  - reserve active
   - payouts quick view
   - actives explainers
 - low priority
@@ -63,3 +65,13 @@
 - esc to go back page
 - instructions in game screen
 - restart game in game screen
+- Back to game button under camera
+
+# How to update
+
+- follow https://capacitorjs.com/docs/v6/updating/6-0
+- npm run build
+- npx cap sync
+- run Android studio, create device with latest android, test
+- build > generated signed bundle > Android App Bundle > release
+- in Google Play Console create production release > send for review > test
