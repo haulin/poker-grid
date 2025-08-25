@@ -26,6 +26,7 @@
 - May-23: playtest, discard fix, support for larger minimum font size, full screen, 48h
 - May-26: better full screen support, production release 50h
 - 2025-Feb-16: update to Android 14
+- 2025-Aug-24: update to Android 15
 
 # ToDo:
 
