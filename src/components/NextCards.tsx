@@ -1,4 +1,3 @@
-import { Fragment } from 'react';
 import { StateProps } from '..';
 import { Card } from './Card';
 
@@ -21,27 +20,19 @@ export function NextCards({ deck, nextCardsVisible, update }: StateProps) {
     <div className="next-cards">
       Next {nextCardsVisible > 1 ? nextCardsVisible : ''} card{nextCardsVisible > 1 ? 's' : ''}
       <div className="next-cards__deck">
-        {deck.slice(0, nextCardsVisible).map((card, index) => (
-          <Fragment key={index}>
-            {index === 0 && (
-              <button
-                className="action-button card no-shadow"
-                onClick={() => update({ type: 'screen', screen: 'deck' })}
-              >
-                <Card card={card} className="card--no-border" />
-              </button>
-            )}
-            {index !== 0 && (
-              <div style={{ zIndex: -index }}>
-                <Card
-                  card={card}
-                  className={`card--obstructed ${
-                    index + 1 === nextCardsVisible ? 'card--deck' : ''
-                  }`}
-                />
-              </div>
-            )}
-          </Fragment>
+        <button
+          className="action-button card no-shadow"
+          onClick={() => update({ type: 'screen', screen: 'deck' })}
+        >
+          <Card card={deck[0]} className="card--no-border" key={deck[0]} />
+        </button>
+        {deck.slice(1, nextCardsVisible).map((card, index) => (
+          <div key={card} style={{ zIndex: -(index + 1) }}>
+            <Card
+              card={card}
+              className={`card--obstructed ${index === nextCardsVisible - 2 ? 'card--deck' : ''}`}
+            />
+          </div>
         ))}
       </div>
     </div>

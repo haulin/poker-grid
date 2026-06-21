@@ -272,6 +272,7 @@ h3 {
 .active svg {
   display: block;
   height: 3.5em;
+  pointer-events: none;
   width: auto;
 }
 .active svg path {
@@ -542,6 +543,9 @@ header > div {
   display: flex;
   flex-direction: row-reverse;
   justify-content: flex-end;
+}
+.next-cards__deck .card--obstructed {
+  animation: none;
 }
 .next-cards__deck > * {
   margin-right: -3em;

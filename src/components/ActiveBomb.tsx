@@ -6,7 +6,6 @@ export type ActionActiveBomb = {
 };
 
 export type ActiveBomb = {
-  isEngaged: boolean;
   usesLeft: number;
 };
 
@@ -14,17 +13,15 @@ export function activeBombReducer(state: GameState, action: UpdateAction) {
   switch (action.type) {
     case 'active-bomb': {
       const newState = deepCopy(state);
-      newState.actives.bomb.isEngaged = !state.actives.bomb.isEngaged;
-      newState.exclusiveReducer = state.exclusiveReducer ? '' : 'bomb';
+      newState.interactionMode = state.interactionMode ? '' : 'bomb';
       return newState;
     }
     case 'board-click': {
-      if (!state.actives.bomb.isEngaged || state.board[action.index] === '') return state;
+      if (state.interactionMode !== 'bomb' || state.board[action.index] === '') return state;
       const newState = deepCopy(state);
       newState.board[action.index] = '';
-      newState.actives.bomb.isEngaged = false;
       newState.actives.bomb.usesLeft -= 1;
-      newState.exclusiveReducer = '';
+      newState.interactionMode = '';
       sounds.bomb.play();
       return newState;
     }
@@ -33,18 +30,19 @@ export function activeBombReducer(state: GameState, action: UpdateAction) {
   }
 }
 
-export function ActiveBomb({ actives, update }: StateProps) {
+export function ActiveBomb({ actives, interactionMode, update }: StateProps) {
   const isEnabled = actives.bomb.usesLeft > 0;
+  const isEngaged = interactionMode === 'bomb';
 
   return (
     <button
-      className={`active ${actives.bomb.isEngaged ? 'active--engaged' : ''}`}
+      className={`active ${isEngaged ? 'active--engaged' : ''}`}
       disabled={!isEnabled}
       onClick={() => update({ type: 'active-bomb' })}
       title={isEnabled ? 'Remove a card from the board' : 'Already used'}
     >
-      {actives.bomb.isEngaged && 'Select a card'}
-      {!actives.bomb.isEngaged && (
+      {isEngaged && 'Select a card'}
+      {!isEngaged && (
         <>
           <Bomb />
           <span className={isEnabled ? '' : 'active__name--strike'}>Bomb</span>

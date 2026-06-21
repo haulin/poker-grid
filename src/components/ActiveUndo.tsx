@@ -10,32 +10,43 @@ export type ActiveUndo = {
   previousState?: GameState;
 };
 
-export function activeUndoReducer(state: GameState, action: UpdateAction) {
-  switch (action.type) {
-    case 'active-undo': {
-      if (!state.actives.undo.previousState) return state;
-      const newState = state.actives.undo.previousState;
-      newState.actives.undo.usesLeft -= 1;
-      newState.screen = state.screen;
-      sounds.undo.play();
-      return newState;
-    }
-    case 'new-game':
-      return state;
-    case 'screen':
-      return state;
-    case 'board-click': {
-      if (state.board[action.index]) return state;
-      const newState = deepCopy(state);
-      newState.actives.undo.previousState = state;
-      return newState;
-    }
-    default: {
-      const newState = deepCopy(state);
-      newState.actives.undo.previousState = state;
-      return newState;
-    }
+type GameStateSnapshot = Pick<GameState, 'board' | 'deck' | 'isGameOver' | 'nextCardsVisible'> & {
+  actives: Record<string, number>;
+};
+
+function gameStateSnapshot(state: GameState): GameStateSnapshot {
+  return {
+    actives: Object.fromEntries(
+      Object.entries(state.actives).map(([name, active]) => [name, active.usesLeft])
+    ),
+    board: state.board,
+    deck: state.deck,
+    isGameOver: state.isGameOver,
+    nextCardsVisible: state.nextCardsVisible,
+  };
+}
+
+function gameStateChanged(before: GameState, after: GameState) {
+  return JSON.stringify(gameStateSnapshot(before)) !== JSON.stringify(gameStateSnapshot(after));
+}
+
+export function undoRestoreReducer(state: GameState, action: UpdateAction) {
+  if (action.type !== 'active-undo' || !state.actives.undo.previousState) return state;
+
+  const newState = state.actives.undo.previousState;
+  newState.actives.undo.usesLeft -= 1;
+  newState.screen = state.screen;
+  sounds.undo.play();
+  return newState;
+}
+
+export function undoRecordReducer(before: GameState, after: GameState, action: UpdateAction) {
+  if (action.type !== 'new-game' && gameStateChanged(before, after)) {
+    const snapshot = deepCopy(before);
+    snapshot.interactionMode = '';
+    after.actives.undo.previousState = snapshot;
   }
+  return after;
 }
 
 export function ActiveUndo({ actives, update }: StateProps) {

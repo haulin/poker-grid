@@ -11,7 +11,8 @@ import {
   ActivePeek,
   activePeekReducer,
   ActiveUndo,
-  activeUndoReducer,
+  undoRecordReducer,
+  undoRestoreReducer,
 } from './components';
 import { deepCopy, generateBoard, generateDeck, shuffleDeck, sounds } from '.';
 
@@ -29,7 +30,7 @@ export interface GameState {
   nextCardsVisible: number;
   seed: string;
   screen: 'deck' | 'game' | 'instructions' | 'menu' | 'support';
-  exclusiveReducer: '' | 'core' | keyof GameState['actives'];
+  interactionMode: '' | 'core' | keyof GameState['actives'];
 }
 
 type ActionBoardClick = {
@@ -68,7 +69,6 @@ function getInitialState(): GameState {
   return {
     actives: {
       bomb: {
-        isEngaged: false,
         usesLeft: 1,
       },
       discard: {
@@ -89,7 +89,7 @@ function getInitialState(): GameState {
     nextCardsVisible: 1,
     seed: Math.random().toString(36).slice(2),
     screen: 'menu',
-    exclusiveReducer: '',
+    interactionMode: '',
   };
 }
 
@@ -136,23 +136,28 @@ function coreReducer(state: GameState, action: UpdateAction) {
 
 export function useGameState() {
   const [state, update] = useReducer((state: GameState, action: UpdateAction) => {
-    let newState = deepCopy(state);
-    if (!state.exclusiveReducer || state.exclusiveReducer === 'undo') {
-      newState = activeUndoReducer(newState, action);
+    if (action.type === 'active-undo') {
+      if (state.interactionMode) return state;
+      return undoRestoreReducer(state, action);
     }
-    if (!state.exclusiveReducer || state.exclusiveReducer === 'core') {
+
+    const before = deepCopy(state);
+    let newState = deepCopy(state);
+
+    if (!state.interactionMode || state.interactionMode === 'core') {
       newState = coreReducer(newState, action);
     }
-    if (!state.exclusiveReducer || state.exclusiveReducer === 'discard') {
+    if (!state.interactionMode || state.interactionMode === 'discard') {
       newState = activeDiscardReducer(newState, action);
     }
-    if (!state.exclusiveReducer || state.exclusiveReducer === 'peek') {
+    if (!state.interactionMode || state.interactionMode === 'peek') {
       newState = activePeekReducer(newState, action);
     }
-    if (!state.exclusiveReducer || state.exclusiveReducer === 'bomb') {
+    if (!state.interactionMode || state.interactionMode === 'bomb') {
       newState = activeBombReducer(newState, action);
     }
-    return newState;
+
+    return undoRecordReducer(before, newState, action);
   }, initialState);
   return { ...state, update };
 }
