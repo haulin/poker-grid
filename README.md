@@ -27,6 +27,7 @@
 - May-26: better full screen support, production release 50h
 - 2025-Feb-16: update to Android 14
 - 2025-Aug-24: update to Android 15
+- 2026-Jun-21: v1.5 undo/bomb fix, peek transitions, button tooltips, Android 16
 
 # ToDo:
 
@@ -72,9 +73,12 @@
 
 # How to update
 
-- follow https://capacitorjs.com/docs/v6/updating/6-0
-- npm run build
-- npx cap sync
-- run Android studio, create device with latest android, test
-- build > generated signed bundle > Android App Bundle > release
-- in Google Play Console create production release > send for review > test
+Google Play wants a new target API each year, usually by end of August. Capacitor major version tracks that (Cap 8 = API 36, etc). Check the Play requirements and Capacitor updating docs before starting.
+
+- bump version in package.json, package-lock.json, android/app/build.gradle (versionCode +1)
+- npm i -D @capacitor/cli@latest, npx cap migrate (gradle wrapper step often fails, fix in Android Studio wizard or gradle-wrapper.properties)
+- confirm android/variables.gradle compileSdk / targetSdk match Capacitor docs
+- npm run build, npx cap sync android
+- brew upgrade --cask android-studio, test on newest and oldest emulator (minSdk 29)
+- build > generate signed bundle > Android App Bundle > release
+- Play Console internal testing on phone, then promote to production

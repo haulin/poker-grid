@@ -5,8 +5,15 @@ const config: CapacitorConfig = {
   appName: 'Poker Grid',
   webDir: 'build',
   server: {
-    androidScheme: 'https'
-  }
+    androidScheme: 'https',
+  },
+  plugins: {
+    SystemBars: {
+      hidden: true,
+      insetsHandling: 'disable',
+      style: 'DARK',
+    },
+  },
 };
 
 export default config;
